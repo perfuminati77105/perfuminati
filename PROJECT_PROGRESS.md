@@ -6,8 +6,8 @@ the full documentation index.
 
 ## Current Status
 
-- **Active phase:** Phase 2 — Metafields & Product Badges (complete),
-  moving to Phase 3 — Product Card Polish
+- **Active phase:** Phase 3 — Product Card Polish (complete), moving to
+  Phase 4 — Homepage
 - **Theme base:** Shopify Dawn v15.5.0 (official `Shopify/dawn` repo, no fork)
 - **Remote:** `https://github.com/perfuminati77105/perfuminati.git`
   (connected, not yet pushed — pushing paused at user's request; git
@@ -140,6 +140,101 @@ None.
 ### Limitations
 - Cannot verify actual visual badge appearance (stacking, color contrast,
   responsive wrapping) until live preview is available.
+
+---
+
+## [2026-08-10 22:45] Phase 3: Product Card Polish
+
+### What changed & why
+Targeted CSS-only polish of Dawn's shared product card
+(`assets/component-card.css`), building on the badge system from Phase 2.
+No Liquid changes — all improvements are visual refinements to existing
+markup/classes.
+
+### Files modified
+- `assets/component-card.css`
+
+### What changed, specifically
+1. **Hover-image crossfade:** replaced the plain `ease` transition with an
+   explicit cubic-bezier easing curve, increased hover scale slightly
+   (1.03 → 1.04), and — the actual bug fix — added a matching opacity
+   transition to the *first* image (previously only the second/incoming
+   image had a transition, so the primary image snapped to `opacity: 0`
+   instantly on hover instead of fading, and would snap back instantly on
+   mouse-leave too). Now both images crossfade symmetrically in both
+   directions.
+2. **Quick add hover-reveal (desktop only, ≥990px):** the quick-add button
+   now fades in (opacity + subtle translateY) on card hover or keyboard
+   focus, CSS-only, no JS. Scoped to `.card:not(.card--horizontal)` so it
+   doesn't affect horizontal card layouts (e.g. the PDP's related-items
+   row). Always fully visible below 990px, where hover isn't a reliable
+   input method (touch devices) — this avoids hiding the primary
+   conversion action on mobile.
+3. **Sale price accent:** the discounted price on product cards now uses
+   the champagne-gold accent (`#c7a76c`, matching color scheme 5) instead
+   of the default foreground color, so it stands out visually from the
+   struck-through compare-at price. Scoped to `.card-information` only
+   (not the shared `price.liquid` component globally), to avoid affecting
+   price display in other contexts (PDP, cart) that may sit on different
+   color schemes.
+
+### Sections/components created
+None (existing component CSS file modified).
+
+### Metafields created
+None.
+
+### Liquid/CSS/JS changes
+CSS only — no Liquid or JS files touched this phase.
+
+### Theme settings added
+None.
+
+### Responsive changes
+Quick-add hover-reveal is explicitly breakpoint-gated (≥990px only) so
+mobile/tablet behavior is unchanged (always visible, no hover dependency).
+
+### Testing performed
+- `npx shopify theme check`: **172 files inspected, 0 errors, 8 warnings**
+  — same pre-existing baseline, no regressions (expected, since only CSS
+  changed and theme check doesn't lint CSS).
+- Visual/interaction testing (hover crossfade smoothness, quick-add reveal
+  timing, keyboard focus behavior, gold price contrast) **not yet
+  possible** — no live store. Deferred to Phase 9 (static CSS review) and
+  Phase 10 (live).
+
+### Issues encountered & fixes applied
+Identified and fixed a latent Dawn CSS asymmetry while polishing the
+hover effect: the primary product image had no opacity transition, only
+the secondary (hover) image did, causing an abrupt (non-animated) snap
+when the image swapped back on mouse-leave. Not a regression we
+introduced — pre-existing in stock Dawn — but worth flagging since it's a
+concrete bug fix bundled into this phase's polish pass.
+
+### Shopify CLI commands used
+`npx shopify theme check`
+
+### Important decisions
+- Chose a CSS-only (no JS) hover-reveal for quick add, using
+  `:hover`/`:focus-within`, to avoid adding JS complexity for a purely
+  visual affordance, and because it degrades gracefully (always-visible)
+  below the breakpoint where hover isn't available.
+- Hardcoded the gold hex (`#c7a76c`) directly in CSS for the sale-price
+  accent rather than adding a new theme setting for it — this is a single
+  small stylistic accent, not a merchant-configurable badge, and it
+  mirrors the same gold already defined in `config/settings_data.json`
+  scheme-5. Flagged with a code comment for future maintainers so it stays
+  in sync if the palette changes.
+
+### Assumptions
+None beyond what's already tracked in earlier phases (font IDs, live
+visual verification pending).
+
+### Pending work
+Visual/interaction QA once live preview is available (Phase 10).
+
+### Limitations
+None new this phase.
 
 ---
 
