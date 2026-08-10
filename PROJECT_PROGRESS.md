@@ -6,8 +6,8 @@ the full documentation index.
 
 ## Current Status
 
-- **Active phase:** Phase 5 — Product Page (complete), moving to Phase 6 —
-  Header, Nav, Footer
+- **Active phase:** Phase 6 — Header, Nav, Footer (complete), moving to
+  Phase 7 — Collection & Search
 - **Theme base:** Shopify Dawn v15.5.0 (official `Shopify/dawn` repo, no fork)
 - **Remote:** `https://github.com/perfuminati77105/perfuminati.git`
   (connected, not yet pushed — pushing paused at user's request; git
@@ -26,6 +26,371 @@ the full documentation index.
   Shopify theme. All work is local-only / dev-store preview only. (Pushing
   source code to the private GitHub repo above is separate from deploying
   to a Shopify store, and does not touch any live theme.)
+
+---
+
+## [2026-08-10 23:55] Phase 6: Header, Nav, Footer
+
+### What changed & why
+Restyled Dawn's header and footer for a boutique/premium feel and gave
+the footer real content — it shipped with zero blocks (no link columns,
+no populated brand info) in the stock setup.
+
+### Files modified
+- `sections/header-group.json`
+- `sections/footer-group.json`
+- `config/settings_data.json`
+- `assets/base.css`
+
+### What changed, specifically
+- **Announcement bar:** dark scheme-4 strip (was light scheme-1),
+  line-separator removed for a cleaner flush look, copy changed from the
+  generic "Welcome to our store" to "Complimentary shipping on every
+  order".
+- **Header:** logo centered (`logo_position: middle-center`, was
+  `middle-left`) for a boutique feel; sticky behavior changed to `always`
+  (was `on-scroll-up`) so navigation is permanently accessible.
+- **Footer:** added 3 blocks where there were previously none —
+  `brand_information` (social icons + the global brand headline/
+  description, which were blank in stock Dawn and are now populated:
+  "Perfumate" / a one-line brand description in
+  `config/settings_data.json`), a `link_list` block pointed at Shopify's
+  default auto-created `footer` navigation menu handle, and a `text`
+  block ("About Perfumate" + short blurb).
+- **Nav typography:** top-level header menu items (not dropdown/submenu
+  items) now get the same uppercase, letter-spaced treatment as buttons
+  (Phase 1), via a selector scoped precisely to avoid affecting nested
+  dropdown items — `.header__inline-menu > .list-menu > li > .header__menu-item`.
+
+### Sections/components created
+None — restyled existing header/footer sections and blocks.
+
+### Metafields created
+None.
+
+### Liquid/CSS/JS changes
+CSS: 1 new rule block in `assets/base.css`. No Liquid/JS changes — all
+other changes are JSON settings/blocks.
+
+### Theme settings added
+None new — populated existing (previously blank) `brand_headline` /
+`brand_description` global settings.
+
+### Responsive changes
+None specific to this phase; header/footer responsive behavior is
+Dawn's existing, unchanged CSS.
+
+### Testing performed
+- `node -e "JSON.parse(...)"` on all 3 edited JSON files — valid.
+- `npx shopify theme check`: **172 files inspected, 0 errors, 8 warnings**
+  — same pre-existing baseline, no regressions.
+- Visual/mobile-menu testing deferred to Phase 10 (no live store yet).
+
+### Issues encountered & fixes applied
+None.
+
+### Shopify CLI commands used
+`npx shopify theme check`
+
+### Important decisions
+- Pointed the new footer `link_list` block at the `footer` menu handle —
+  Shopify auto-creates a menu with this exact handle on every new store,
+  so it's safe to reference even without store access, though it will be
+  empty of links until the merchant populates it in Navigation settings.
+- Chose `sticky_header_type: always` over the stock `on-scroll-up` for
+  simpler, more predictable persistent navigation — a defensible either-way
+  choice, easily changed in the Theme Editor if the merchant prefers the
+  scroll-triggered behavior.
+
+### Assumptions
+None new.
+
+### Pending work
+- Merchant should populate the `footer` navigation menu with real links
+  (Shop, Contact, Shipping, Privacy, etc.) in Shopify Admin.
+- Visual QA (sticky header behavior, mobile drawer, centered logo layout)
+  in Phase 10.
+
+### Limitations
+None new this phase.
+
+---
+
+## [2026-08-10 23:35] Phase 5: Product Page
+
+### What changed & why
+Added trust-building content blocks to the product page and aligned the
+related-products image ratio with the rest of the site. Much of this
+phase's original scope (badges, dynamic checkout button, a native
+disclosures/trust-elements section) turned out to already be present or
+already done: badges were wired in Phase 2, and Dawn v15.5's stock
+`templates/product.json` already had `show_dynamic_checkout: true` on the
+buy_buttons block and a `disclosures` section already in the section
+order — verified by reading the file rather than assumed.
+
+### Files modified
+- `templates/product.json`
+
+### What changed, specifically
+- Added 3 `collapsible_tab` blocks between `description` and `share`:
+  **Fragrance Notes** (icon: `perfume`), **Shipping & Delivery** (icon:
+  `truck`), **Returns & Exchanges** (icon: `return`) — all using Dawn's
+  built-in `main-product` collapsible-tab block type and icon set, with
+  placeholder richtext content the merchant can edit per product via the
+  Theme Editor.
+- Changed `related-products` section's `image_ratio` from `square` to
+  `portrait`, matching the portrait ratio used across the homepage's
+  product grids (Phase 4) for visual consistency.
+
+### Sections/components created
+None — used Dawn's existing `main-product` block types.
+
+### Metafields created
+None this phase.
+
+### Liquid/CSS/JS changes
+None — JSON template only.
+
+### Theme settings added
+None.
+
+### Responsive changes
+None specific to this phase — collapsible tabs and related-products use
+Dawn's existing responsive behavior.
+
+### Testing performed
+- `node -e "JSON.parse(...)"` — valid JSON.
+- `npx shopify theme check`: **172 files inspected, 0 errors, 8 warnings**
+  — same pre-existing baseline, no regressions.
+- Visual verification deferred to Phase 10 (no live store yet).
+
+### Issues encountered & fixes applied
+None.
+
+### Shopify CLI commands used
+`npx shopify theme check`
+
+### Important decisions
+- Left the `disclosures` section as-is (already in the template, already
+  enabled). It's Shopify's native Disclosures feature
+  (`product.metafields.shopify.disclosure`, Admin-managed) — separate from
+  our Phase 2 `custom.*` badge metafields — and self-hides when the
+  merchant hasn't configured it, so it's harmless to leave in place as an
+  optional future trust-element surface rather than something we need to
+  build ourselves.
+- Used placeholder richtext content in the 3 new collapsible tabs (marked
+  as such) rather than inventing real fragrance-note copy, since real
+  product-specific content belongs to the merchant/product data, not
+  hardcoded theme defaults.
+
+### Assumptions
+None new.
+
+### Pending work
+- Merchant should replace the placeholder Fragrance Notes / Shipping /
+  Returns text with real per-product or store-wide copy.
+- Visual QA in Phase 10.
+
+### Limitations
+None new this phase.
+
+---
+
+## [2026-08-10 23:15] Phase 4: Homepage
+
+### What changed & why
+Rebuilt `templates/index.json` from Dawn's stock single hero +
+featured-collection into a full premium homepage narrative, using only
+existing Dawn section/block types composed through JSON — no new sections
+or Liquid code. Section schemas (setting ids, valid enum values, block
+types) were confirmed by reading each section's `{% schema %}` block
+directly before writing the JSON, to avoid guessing wrong ids/values that
+`shopify theme check` or the customizer would silently reject.
+
+### Files modified
+- `templates/index.json` (complete rewrite)
+
+### Homepage structure (8 sections, in order)
+1. **Hero** (`image-banner`) — full-bleed image with dark overlay
+   (`image_overlay_opacity: 40`, `color_scheme: scheme-4`), headline "A
+   Signature Scent Awaits", supporting text, primary CTA ("Shop All
+   Fragrances" → `shopify://collections/all`, always valid) and secondary
+   CTA ("Explore Our Story", link left blank for the merchant to set).
+2. **Trending Now** (`featured-collection`) — `quick_add: standard`,
+   `show_secondary_image: true`, portrait image ratio, scheme-1.
+3. **New Arrivals** (`featured-collection`) — same structure, scheme-2.
+4. **Best Sellers** (`featured-collection`) — same structure, scheme-1.
+5. **Discovery collage** (`collage`) — mixed product/collection/image
+   promo tile, scheme-2.
+6. **Brand story** (`image-with-text`) — "Our Story" caption, "Crafted
+   With Intention" heading, brand copy, "Learn More" button, scheme-2.
+7. **Shop by Collection** (`collection-list`) — 3 collection tiles, scheme-1.
+8. **Newsletter** (`newsletter`) — dark scheme-3 close, email signup.
+
+Color schemes alternate through the page (dark hero → light → beige →
+light → beige → beige → light → dark newsletter) for visual rhythm rather
+than a flat single background throughout.
+
+### Sections/components created
+None — composition only, using Dawn's existing section types.
+
+### Metafields created
+None this phase (see Phase 2).
+
+### Liquid/CSS/JS changes
+None — JSON template only.
+
+### Theme settings added
+None.
+
+### Responsive changes
+None specific to this phase; relies on each section's existing responsive
+CSS (`columns_mobile` settings explicitly set on grid sections to keep
+mobile layouts sane — e.g. `"2"` for the product grids, `"1"` for
+collection-list).
+
+### Testing performed
+- `node -e "JSON.parse(...)"` — valid JSON.
+- `npx shopify theme check`: **172 files inspected, 0 errors, 8 warnings**
+  — identical pre-existing baseline, no regressions or schema-validation
+  errors from the new template.
+- Visual verification (image placeholders, section flow, spacing rhythm,
+  mobile stacking) **not yet possible** — no live store/theme editor
+  access. Deferred to Phase 10.
+
+### Issues encountered & fixes applied
+None — schemas were confirmed against source before writing JSON,
+avoiding trial-and-error.
+
+### Shopify CLI commands used
+`npx shopify theme check`
+
+### Important decisions
+- The three featured-collection sections (Trending/New/Best Sellers) point
+  at the `all` collection as a working, non-blank default. **This is a
+  placeholder** — per `docs/2026-08-10-metafields.md`, the intended
+  end-state is 3 automated collections keyed on the `custom.trending` /
+  `custom.latest` / `custom.best_seller` metafields, which the merchant
+  (or a future session, once store access exists) should create and then
+  repoint these sections at.
+- The collage and collection-list sections deliberately leave their
+  product/collection pickers unset (Dawn's normal "merchant fills this in
+  via the customizer" pattern) rather than guessing placeholder content,
+  per the "don't hardcode content that should be manageable through
+  Shopify" requirement.
+- Chose `image-banner` over `slideshow` for the hero specifically because
+  it supports 2 buttons (primary + secondary CTA) per the schema research,
+  while `slideshow`'s slide block only supports 1 button per slide.
+
+### Assumptions
+- Hero and brand-story images are unset (Dawn shows its placeholder
+  graphic) since no real product/brand photography exists yet — expected
+  to be uploaded by the merchant via the Theme Editor.
+
+### Pending work
+- Once store access exists: create the 3 automated collections (Phase 2
+  dependency) and repoint the homepage's featured-collection sections at
+  them instead of `all`.
+- Assign real collections to the collage and collection-list blocks.
+- Visual QA in Phase 10.
+
+### Limitations
+Cannot verify actual visual layout/rhythm until live preview is available.
+
+---
+
+## [2026-08-10 22:45] Phase 3: Product Card Polish
+
+### What changed & why
+Targeted CSS-only polish of Dawn's shared product card
+(`assets/component-card.css`), building on the badge system from Phase 2.
+No Liquid changes — all improvements are visual refinements to existing
+markup/classes.
+
+### Files modified
+- `assets/component-card.css`
+
+### What changed, specifically
+1. **Hover-image crossfade:** replaced the plain `ease` transition with an
+   explicit cubic-bezier easing curve, increased hover scale slightly
+   (1.03 → 1.04), and — the actual bug fix — added a matching opacity
+   transition to the *first* image (previously only the second/incoming
+   image had a transition, so the primary image snapped to `opacity: 0`
+   instantly on hover instead of fading, and would snap back instantly on
+   mouse-leave too). Now both images crossfade symmetrically in both
+   directions.
+2. **Quick add hover-reveal (desktop only, ≥990px):** the quick-add button
+   now fades in (opacity + subtle translateY) on card hover or keyboard
+   focus, CSS-only, no JS. Scoped to `.card:not(.card--horizontal)` so it
+   doesn't affect horizontal card layouts (e.g. the PDP's related-items
+   row). Always fully visible below 990px, where hover isn't a reliable
+   input method (touch devices) — this avoids hiding the primary
+   conversion action on mobile.
+3. **Sale price accent:** the discounted price on product cards now uses
+   the champagne-gold accent (`#c7a76c`, matching color scheme 5) instead
+   of the default foreground color, so it stands out visually from the
+   struck-through compare-at price. Scoped to `.card-information` only
+   (not the shared `price.liquid` component globally), to avoid affecting
+   price display in other contexts (PDP, cart) that may sit on different
+   color schemes.
+
+### Sections/components created
+None (existing component CSS file modified).
+
+### Metafields created
+None.
+
+### Liquid/CSS/JS changes
+CSS only — no Liquid or JS files touched this phase.
+
+### Theme settings added
+None.
+
+### Responsive changes
+Quick-add hover-reveal is explicitly breakpoint-gated (≥990px only) so
+mobile/tablet behavior is unchanged (always visible, no hover dependency).
+
+### Testing performed
+- `npx shopify theme check`: **172 files inspected, 0 errors, 8 warnings**
+  — same pre-existing baseline, no regressions (expected, since only CSS
+  changed and theme check doesn't lint CSS).
+- Visual/interaction testing (hover crossfade smoothness, quick-add reveal
+  timing, keyboard focus behavior, gold price contrast) **not yet
+  possible** — no live store. Deferred to Phase 9 (static CSS review) and
+  Phase 10 (live).
+
+### Issues encountered & fixes applied
+Identified and fixed a latent Dawn CSS asymmetry while polishing the
+hover effect: the primary product image had no opacity transition, only
+the secondary (hover) image did, causing an abrupt (non-animated) snap
+when the image swapped back on mouse-leave. Not a regression we
+introduced — pre-existing in stock Dawn — but worth flagging since it's a
+concrete bug fix bundled into this phase's polish pass.
+
+### Shopify CLI commands used
+`npx shopify theme check`
+
+### Important decisions
+- Chose a CSS-only (no JS) hover-reveal for quick add, using
+  `:hover`/`:focus-within`, to avoid adding JS complexity for a purely
+  visual affordance, and because it degrades gracefully (always-visible)
+  below the breakpoint where hover isn't available.
+- Hardcoded the gold hex (`#c7a76c`) directly in CSS for the sale-price
+  accent rather than adding a new theme setting for it — this is a single
+  small stylistic accent, not a merchant-configurable badge, and it
+  mirrors the same gold already defined in `config/settings_data.json`
+  scheme-5. Flagged with a code comment for future maintainers so it stays
+  in sync if the palette changes.
+
+### Assumptions
+None beyond what's already tracked in earlier phases (font IDs, live
+visual verification pending).
+
+### Pending work
+Visual/interaction QA once live preview is available (Phase 10).
+
+### Limitations
+None new this phase.
 
 ---
 
@@ -140,284 +505,6 @@ None.
 ### Limitations
 - Cannot verify actual visual badge appearance (stacking, color contrast,
   responsive wrapping) until live preview is available.
-
----
-
-## [2026-08-10 22:45] Phase 3: Product Card Polish
-
-### What changed & why
-Targeted CSS-only polish of Dawn's shared product card
-(`assets/component-card.css`), building on the badge system from Phase 2.
-No Liquid changes — all improvements are visual refinements to existing
-markup/classes.
-
-### Files modified
-- `assets/component-card.css`
-
-### What changed, specifically
-1. **Hover-image crossfade:** replaced the plain `ease` transition with an
-   explicit cubic-bezier easing curve, increased hover scale slightly
-   (1.03 → 1.04), and — the actual bug fix — added a matching opacity
-   transition to the *first* image (previously only the second/incoming
-   image had a transition, so the primary image snapped to `opacity: 0`
-   instantly on hover instead of fading, and would snap back instantly on
-   mouse-leave too). Now both images crossfade symmetrically in both
-   directions.
-2. **Quick add hover-reveal (desktop only, ≥990px):** the quick-add button
-   now fades in (opacity + subtle translateY) on card hover or keyboard
-   focus, CSS-only, no JS. Scoped to `.card:not(.card--horizontal)` so it
-   doesn't affect horizontal card layouts (e.g. the PDP's related-items
-   row). Always fully visible below 990px, where hover isn't a reliable
-   input method (touch devices) — this avoids hiding the primary
-   conversion action on mobile.
-3. **Sale price accent:** the discounted price on product cards now uses
-   the champagne-gold accent (`#c7a76c`, matching color scheme 5) instead
-   of the default foreground color, so it stands out visually from the
-   struck-through compare-at price. Scoped to `.card-information` only
-   (not the shared `price.liquid` component globally), to avoid affecting
-   price display in other contexts (PDP, cart) that may sit on different
-   color schemes.
-
-### Sections/components created
-None (existing component CSS file modified).
-
-### Metafields created
-None.
-
-### Liquid/CSS/JS changes
-CSS only — no Liquid or JS files touched this phase.
-
-### Theme settings added
-None.
-
-### Responsive changes
-Quick-add hover-reveal is explicitly breakpoint-gated (≥990px only) so
-mobile/tablet behavior is unchanged (always visible, no hover dependency).
-
-### Testing performed
-- `npx shopify theme check`: **172 files inspected, 0 errors, 8 warnings**
-  — same pre-existing baseline, no regressions (expected, since only CSS
-  changed and theme check doesn't lint CSS).
-- Visual/interaction testing (hover crossfade smoothness, quick-add reveal
-  timing, keyboard focus behavior, gold price contrast) **not yet
-  possible** — no live store. Deferred to Phase 9 (static CSS review) and
-  Phase 10 (live).
-
-### Issues encountered & fixes applied
-Identified and fixed a latent Dawn CSS asymmetry while polishing the
-hover effect: the primary product image had no opacity transition, only
-the secondary (hover) image did, causing an abrupt (non-animated) snap
-when the image swapped back on mouse-leave. Not a regression we
-introduced — pre-existing in stock Dawn — but worth flagging since it's a
-concrete bug fix bundled into this phase's polish pass.
-
-### Shopify CLI commands used
-`npx shopify theme check`
-
-### Important decisions
-- Chose a CSS-only (no JS) hover-reveal for quick add, using
-  `:hover`/`:focus-within`, to avoid adding JS complexity for a purely
-  visual affordance, and because it degrades gracefully (always-visible)
-  below the breakpoint where hover isn't available.
-- Hardcoded the gold hex (`#c7a76c`) directly in CSS for the sale-price
-  accent rather than adding a new theme setting for it — this is a single
-  small stylistic accent, not a merchant-configurable badge, and it
-  mirrors the same gold already defined in `config/settings_data.json`
-  scheme-5. Flagged with a code comment for future maintainers so it stays
-  in sync if the palette changes.
-
-### Assumptions
-None beyond what's already tracked in earlier phases (font IDs, live
-visual verification pending).
-
-### Pending work
-Visual/interaction QA once live preview is available (Phase 10).
-
-### Limitations
-None new this phase.
-
----
-
-## [2026-08-10 23:15] Phase 4: Homepage
-
-### What changed & why
-Rebuilt `templates/index.json` from Dawn's stock single hero +
-featured-collection into a full premium homepage narrative, using only
-existing Dawn section/block types composed through JSON — no new sections
-or Liquid code. Section schemas (setting ids, valid enum values, block
-types) were confirmed by reading each section's `{% schema %}` block
-directly before writing the JSON, to avoid guessing wrong ids/values that
-`shopify theme check` or the customizer would silently reject.
-
-### Files modified
-- `templates/index.json` (complete rewrite)
-
-### Homepage structure (8 sections, in order)
-1. **Hero** (`image-banner`) — full-bleed image with dark overlay
-   (`image_overlay_opacity: 40`, `color_scheme: scheme-4`), headline "A
-   Signature Scent Awaits", supporting text, primary CTA ("Shop All
-   Fragrances" → `shopify://collections/all`, always valid) and secondary
-   CTA ("Explore Our Story", link left blank for the merchant to set).
-2. **Trending Now** (`featured-collection`) — `quick_add: standard`,
-   `show_secondary_image: true`, portrait image ratio, scheme-1.
-3. **New Arrivals** (`featured-collection`) — same structure, scheme-2.
-4. **Best Sellers** (`featured-collection`) — same structure, scheme-1.
-5. **Discovery collage** (`collage`) — mixed product/collection/image
-   promo tile, scheme-2.
-6. **Brand story** (`image-with-text`) — "Our Story" caption, "Crafted
-   With Intention" heading, brand copy, "Learn More" button, scheme-2.
-7. **Shop by Collection** (`collection-list`) — 3 collection tiles, scheme-1.
-8. **Newsletter** (`newsletter`) — dark scheme-3 close, email signup.
-
-Color schemes alternate through the page (dark hero → light → beige →
-light → beige → beige → light → dark newsletter) for visual rhythm rather
-than a flat single background throughout.
-
-### Sections/components created
-None — composition only, using Dawn's existing section types.
-
-### Metafields created
-None this phase (see Phase 2).
-
-### Liquid/CSS/JS changes
-None — JSON template only.
-
-### Theme settings added
-None.
-
-### Responsive changes
-None specific to this phase; relies on each section's existing responsive
-CSS (`columns_mobile` settings explicitly set on grid sections to keep
-mobile layouts sane — e.g. `"2"` for the product grids, `"1"` for
-collection-list).
-
-### Testing performed
-- `node -e "JSON.parse(...)"` — valid JSON.
-- `npx shopify theme check`: **172 files inspected, 0 errors, 8 warnings**
-  — identical pre-existing baseline, no regressions or schema-validation
-  errors from the new template.
-- Visual verification (image placeholders, section flow, spacing rhythm,
-  mobile stacking) **not yet possible** — no live store/theme editor
-  access. Deferred to Phase 10.
-
-### Issues encountered & fixes applied
-None — schemas were confirmed against source before writing JSON,
-avoiding trial-and-error.
-
-### Shopify CLI commands used
-`npx shopify theme check`
-
-### Important decisions
-- The three featured-collection sections (Trending/New/Best Sellers) point
-  at the `all` collection as a working, non-blank default. **This is a
-  placeholder** — per `docs/2026-08-10-metafields.md`, the intended
-  end-state is 3 automated collections keyed on the `custom.trending` /
-  `custom.latest` / `custom.best_seller` metafields, which the merchant
-  (or a future session, once store access exists) should create and then
-  repoint these sections at.
-- The collage and collection-list sections deliberately leave their
-  product/collection pickers unset (Dawn's normal "merchant fills this in
-  via the customizer" pattern) rather than guessing placeholder content,
-  per the "don't hardcode content that should be manageable through
-  Shopify" requirement.
-- Chose `image-banner` over `slideshow` for the hero specifically because
-  it supports 2 buttons (primary + secondary CTA) per the schema research,
-  while `slideshow`'s slide block only supports 1 button per slide.
-
-### Assumptions
-- Hero and brand-story images are unset (Dawn shows its placeholder
-  graphic) since no real product/brand photography exists yet — expected
-  to be uploaded by the merchant via the Theme Editor.
-
-### Pending work
-- Once store access exists: create the 3 automated collections (Phase 2
-  dependency) and repoint the homepage's featured-collection sections at
-  them instead of `all`.
-- Assign real collections to the collage and collection-list blocks.
-- Visual QA in Phase 10.
-
-### Limitations
-Cannot verify actual visual layout/rhythm until live preview is available.
-
----
-
-## [2026-08-10 23:35] Phase 5: Product Page
-
-### What changed & why
-Added trust-building content blocks to the product page and aligned the
-related-products image ratio with the rest of the site. Much of this
-phase's original scope (badges, dynamic checkout button, a native
-disclosures/trust-elements section) turned out to already be present or
-already done: badges were wired in Phase 2, and Dawn v15.5's stock
-`templates/product.json` already had `show_dynamic_checkout: true` on the
-buy_buttons block and a `disclosures` section already in the section
-order — verified by reading the file rather than assumed.
-
-### Files modified
-- `templates/product.json`
-
-### What changed, specifically
-- Added 3 `collapsible_tab` blocks between `description` and `share`:
-  **Fragrance Notes** (icon: `perfume`), **Shipping & Delivery** (icon:
-  `truck`), **Returns & Exchanges** (icon: `return`) — all using Dawn's
-  built-in `main-product` collapsible-tab block type and icon set, with
-  placeholder richtext content the merchant can edit per product via the
-  Theme Editor.
-- Changed `related-products` section's `image_ratio` from `square` to
-  `portrait`, matching the portrait ratio used across the homepage's
-  product grids (Phase 4) for visual consistency.
-
-### Sections/components created
-None — used Dawn's existing `main-product` block types.
-
-### Metafields created
-None this phase.
-
-### Liquid/CSS/JS changes
-None — JSON template only.
-
-### Theme settings added
-None.
-
-### Responsive changes
-None specific to this phase — collapsible tabs and related-products use
-Dawn's existing responsive behavior.
-
-### Testing performed
-- `node -e "JSON.parse(...)"` — valid JSON.
-- `npx shopify theme check`: **172 files inspected, 0 errors, 8 warnings**
-  — same pre-existing baseline, no regressions.
-- Visual verification deferred to Phase 10 (no live store yet).
-
-### Issues encountered & fixes applied
-None.
-
-### Shopify CLI commands used
-`npx shopify theme check`
-
-### Important decisions
-- Left the `disclosures` section as-is (already in the template, already
-  enabled). It's Shopify's native Disclosures feature
-  (`product.metafields.shopify.disclosure`, Admin-managed) — separate from
-  our Phase 2 `custom.*` badge metafields — and self-hides when the
-  merchant hasn't configured it, so it's harmless to leave in place as an
-  optional future trust-element surface rather than something we need to
-  build ourselves.
-- Used placeholder richtext content in the 3 new collapsible tabs (marked
-  as such) rather than inventing real fragrance-note copy, since real
-  product-specific content belongs to the merchant/product data, not
-  hardcoded theme defaults.
-
-### Assumptions
-None new.
-
-### Pending work
-- Merchant should replace the placeholder Fragrance Notes / Shipping /
-  Returns text with real per-product or store-wide copy.
-- Visual QA in Phase 10.
-
-### Limitations
-None new this phase.
 
 ---
 

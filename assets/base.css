@@ -2813,6 +2813,15 @@ details[open] > .header__submenu {
   color: rgba(var(--color-foreground), 0.75);
 }
 
+/* Top-level nav items only (not dropdown/submenu items) get the same
+   uppercase, tracked treatment as buttons for a premium, consistent feel. */
+.header__inline-menu > .list-menu > li > .header__menu-item,
+.header__inline-menu > .list-menu > li > header-menu > details > summary.header__menu-item {
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+  font-size: 1.3rem;
+}
+
 .header__menu-item:hover {
   color: rgb(var(--color-foreground));
 }

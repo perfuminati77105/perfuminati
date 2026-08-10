@@ -4,8 +4,29 @@
   "sections": {
     "footer": {
       "type": "footer",
-      "blocks": {},
-      "block_order": [],
+      "blocks": {
+        "brand": {
+          "type": "brand_information",
+          "settings": {
+            "show_social": true
+          }
+        },
+        "quick_links": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Quick Links",
+            "menu": "footer"
+          }
+        },
+        "about": {
+          "type": "text",
+          "settings": {
+            "heading": "About Perfumate",
+            "subtext": "<p>Rare ingredients, master perfumers, and a passion for scent that lingers.</p>"
+          }
+        }
+      },
+      "block_order": ["brand", "quick_links", "about"],
       "settings": {
         "color_scheme": "scheme-1",
         "newsletter_enable": true,

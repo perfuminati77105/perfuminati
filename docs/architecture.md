@@ -124,4 +124,18 @@ Dawn v15.5.0 already ships partial badge support — this is what Phase 2
   Shopify's native Disclosures feature (Admin-managed `product.metafields.shopify.disclosure`,
   distinct from our Phase 2 `custom.*` badge metafields) — it's a
   self-hiding optional section, not a defect.
+- **Phase 6 (done):** `sections/header-group.json` — announcement bar
+  restyled to a dark (scheme-4) strip with brand copy ("Complimentary
+  shipping on every order") instead of stock "Welcome to our store";
+  header logo centered (`logo_position: middle-center`) and made
+  permanently sticky (`sticky_header_type: always`) for a boutique feel.
+  `sections/footer-group.json` — added 3 footer blocks (previously empty):
+  `brand_information` (uses the global `brand_headline`/`brand_description`
+  theme settings, now populated in `config/settings_data.json`, previously
+  blank), a `link_list` block pointed at Shopify's default auto-created
+  `footer` menu handle, and a `text` "About Perfumate" block.
+  `assets/base.css` — top-level header nav items (not dropdown/submenu
+  items) get the same uppercase/tracked treatment as buttons, via a
+  selector scoped to `.header__inline-menu > .list-menu > li` to avoid
+  affecting nested dropdown items.
 - (Further phases documented here as they land.)
