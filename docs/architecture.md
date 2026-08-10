@@ -148,4 +148,12 @@ Dawn v15.5.0 already ships partial badge support — this is what Phase 2
   changes needed — the facets UI's existing classes (`.button--tertiary`
   for active-filter pills, `.caption-large` for labels) already inherit the
   Phase 1/3 typography and button styling automatically.
+- **Phase 8 (done):** `config/settings_data.json` — `cart_type` changed
+  from `notification` (small popup toast) to `drawer` (slide-out mini-cart)
+  for a more premium, modern add-to-cart experience; `show_cart_note`
+  enabled (was `false`) so shoppers can add a gift note at checkout, a
+  natural fit for a fragrance/gifting brand. No Liquid/CSS changes — cart
+  UI already inherits the button/price/badge styling from earlier phases
+  via shared classes; deeper cart CSS auditing (overflow, spacing) is
+  covered by Phase 9's full QA pass rather than duplicated here.
 - (Further phases documented here as they land.)

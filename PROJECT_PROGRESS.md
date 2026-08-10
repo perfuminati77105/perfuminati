@@ -6,8 +6,8 @@ the full documentation index.
 
 ## Current Status
 
-- **Active phase:** Phase 7 — Collection & Search (complete), moving to
-  Phase 8 — Cart & Micro-interactions
+- **Active phase:** Phase 8 — Cart & Micro-interactions (complete),
+  moving to Phase 9 — Full Static QA Pass
 - **Theme base:** Shopify Dawn v15.5.0 (official `Shopify/dawn` repo, no fork)
 - **Remote:** `https://github.com/perfuminati77105/perfuminati.git`
   (connected, not yet pushed — pushing paused at user's request; git
@@ -26,6 +26,77 @@ the full documentation index.
   Shopify theme. All work is local-only / dev-store preview only. (Pushing
   source code to the private GitHub repo above is separate from deploying
   to a Shopify store, and does not touch any live theme.)
+
+---
+
+## [2026-08-11 00:20] Phase 8: Cart & Micro-interactions
+
+### What changed & why
+Two targeted global cart-setting changes for a more premium, conversion-
+friendly cart experience, plus a deliberate decision to defer deeper cart
+CSS auditing to the dedicated QA phase rather than duplicate that work.
+
+### Files modified
+- `config/settings_data.json`
+
+### What changed, specifically
+- `cart_type`: `notification` → `drawer`. Stock Dawn's default is a small
+  popup toast confirming the item was added, requiring a separate visit to
+  the cart page to review/checkout. A slide-out drawer shows the full cart
+  contents immediately without leaving the current page — a more premium,
+  lower-friction pattern.
+- `show_cart_note`: `false` → `true`. Adds an order-note field to the
+  cart, letting shoppers leave a gift message — a natural fit for a
+  fragrance brand where gifting is a common purchase occasion.
+
+### Sections/components created
+None.
+
+### Metafields created
+None.
+
+### Liquid/CSS/JS changes
+None — both changes are global theme settings; the cart drawer/notification
+UI is Dawn's existing, unmodified implementation, and already inherits the
+button/price/badge styling established in earlier phases via shared CSS
+classes.
+
+### Theme settings added
+None new — changed existing settings' values.
+
+### Responsive changes
+None specific to this phase.
+
+### Testing performed
+- `node -e "JSON.parse(...)"` — valid JSON.
+- `npx shopify theme check`: **172 files inspected, 0 errors, 8 warnings**
+  — same pre-existing baseline, no regressions.
+- Visual/interaction testing (drawer open/close animation, cart note field
+  placement, spacing/overflow inside the drawer) deferred to Phase 9
+  (static review) and Phase 10 (live).
+
+### Issues encountered & fixes applied
+None.
+
+### Shopify CLI commands used
+`npx shopify theme check`
+
+### Important decisions
+Deliberately did not do a deep CSS pass on cart-specific files this phase
+(`assets/component-cart*.css`, `cart-drawer.js`) — that kind of overflow/
+spacing/responsive audit is Phase 9's explicit job (a full theme-wide
+static QA pass), and doing it piecemeal per-phase risked duplicate or
+inconsistent effort. Phase 9 will cover cart alongside every other
+template.
+
+### Assumptions
+None new.
+
+### Pending work
+Visual/interaction QA in Phase 9 (static) and Phase 10 (live).
+
+### Limitations
+None new this phase.
 
 ---
 
