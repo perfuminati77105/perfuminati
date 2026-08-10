@@ -138,4 +138,14 @@ Dawn v15.5.0 already ships partial badge support — this is what Phase 2
   items) get the same uppercase/tracked treatment as buttons, via a
   selector scoped to `.header__inline-menu > .list-menu > li` to avoid
   affecting nested dropdown items.
+- **Phase 7 (done):** `templates/collection.json` and `templates/search.json`
+  — `image_ratio` changed to `portrait` (matching homepage/PDP grids from
+  Phases 4-5), `show_secondary_image: true` (hover crossfade from Phase 3
+  now applies here too), `quick_add: standard` added to the collection
+  grid, and `filter_type` changed from `horizontal` to `drawer` on both
+  (a slide-out filter panel instead of an inline bar, consistent behavior
+  across breakpoints without separate desktop/mobile layouts). No Liquid/CSS
+  changes needed — the facets UI's existing classes (`.button--tertiary`
+  for active-filter pills, `.caption-large` for labels) already inherit the
+  Phase 1/3 typography and button styling automatically.
 - (Further phases documented here as they land.)

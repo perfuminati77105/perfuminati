@@ -6,8 +6,8 @@ the full documentation index.
 
 ## Current Status
 
-- **Active phase:** Phase 6 — Header, Nav, Footer (complete), moving to
-  Phase 7 — Collection & Search
+- **Active phase:** Phase 7 — Collection & Search (complete), moving to
+  Phase 8 — Cart & Micro-interactions
 - **Theme base:** Shopify Dawn v15.5.0 (official `Shopify/dawn` repo, no fork)
 - **Remote:** `https://github.com/perfuminati77105/perfuminati.git`
   (connected, not yet pushed — pushing paused at user's request; git
@@ -26,6 +26,82 @@ the full documentation index.
   Shopify theme. All work is local-only / dev-store preview only. (Pushing
   source code to the private GitHub repo above is separate from deploying
   to a Shopify store, and does not touch any live theme.)
+
+---
+
+## [2026-08-11 00:10] Phase 7: Collection & Search
+
+### What changed & why
+Aligned collection and search result grids with the visual language
+established in earlier phases (portrait product photography ratio, hover
+crossfade, quick add), and switched filtering to a drawer pattern for a
+cleaner, more consistent experience across breakpoints.
+
+### Files modified
+- `templates/collection.json`
+- `templates/search.json`
+
+### What changed, specifically
+Both templates: `image_ratio` changed from `adapt` to `portrait`
+(matching the homepage and product-page grids from Phases 4-5),
+`show_secondary_image` turned on (`true`) so the Phase 3 hover crossfade
+applies here too, and `filter_type` changed from `horizontal` to `drawer`
+(slide-out filter panel instead of an inline bar — same UX on desktop and
+mobile, no separate horizontal-bar-collapses-into-accordion behavior to
+account for). `templates/collection.json` additionally gets
+`quick_add: standard` on the product grid, matching the homepage sections.
+
+No Liquid or CSS changes were needed — the facets/filter UI's existing
+markup already uses the shared `.button--tertiary` class for active-filter
+pills and `.caption-large` for labels, both of which already inherit the
+Phase 1 typography and Phase 1 button styling automatically.
+
+### Sections/components created
+None.
+
+### Metafields created
+None.
+
+### Liquid/CSS/JS changes
+None — JSON template settings only.
+
+### Theme settings added
+None.
+
+### Responsive changes
+None specific to this phase — `filter_type: drawer` is itself a
+responsive-consistency choice (same interaction model at every breakpoint,
+vs. `horizontal`'s differing desktop/mobile presentation).
+
+### Testing performed
+- `node -e "JSON.parse(...)"` — valid JSON.
+- `npx shopify theme check`: **172 files inspected, 0 errors, 8 warnings**
+  — same pre-existing baseline, no regressions.
+- Visual/interaction testing (filter drawer open/close, active-filter pill
+  styling, hover crossfade on grid cards) deferred to Phase 10 (no live
+  store yet).
+
+### Issues encountered & fixes applied
+None.
+
+### Shopify CLI commands used
+`npx shopify theme check`
+
+### Important decisions
+Chose `filter_type: drawer` over `vertical`/`horizontal` for a single
+consistent filtering UX across breakpoints rather than a desktop sidebar
+that behaves differently on mobile — easily changed in the Theme Editor
+if the merchant prefers a persistent visible sidebar once real product
+data/filters exist to evaluate against.
+
+### Assumptions
+None new.
+
+### Pending work
+Visual/interaction QA in Phase 10.
+
+### Limitations
+None new this phase.
 
 ---
 
