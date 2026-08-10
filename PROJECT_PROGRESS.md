@@ -6,15 +6,85 @@ the full documentation index.
 
 ## Current Status
 
-- **Active phase:** Phase 0 — Project Scaffolding & Baseline (in progress)
+- **Active phase:** Phase 1 — Brand Foundations (complete), moving to
+  Phase 2 — Metafields & Product Badges
 - **Theme base:** Shopify Dawn v15.5.0 (official `Shopify/dawn` repo, no fork)
+- **Remote:** `https://github.com/perfuminati77105/perfuminati.git`
 - **Open blockers:**
-  - Dev/staging store domain not yet provided by user. `shopify theme dev`
-    (live preview) and any Shopify Admin work (creating metafield
-    definitions, automated collections) are blocked until this is supplied.
-    See [docs/2026-08-10-store-connection.md](docs/2026-08-10-store-connection.md).
+  - Dev/staging Shopify store domain not yet provided by user. `shopify
+    theme dev` (live preview) and any Shopify Admin work (creating
+    metafield definitions, automated collections) are blocked until this
+    is supplied. See
+    [docs/2026-08-10-store-connection.md](docs/2026-08-10-store-connection.md).
 - **Do not deploy:** No work in this project may be pushed to any live
-  Shopify theme. All work is local-only / dev-store preview only.
+  Shopify theme. All work is local-only / dev-store preview only. (Pushing
+  source code to the private GitHub repo above is separate from deploying
+  to a Shopify store, and does not touch any live theme.)
+
+---
+
+## [2026-08-10 21:30] Phase 1: Brand Foundations
+
+### What changed & why
+Applied the Perfumate brand identity (color palette, typography, section
+spacing, button styling) entirely through Dawn's existing settings system —
+no new architecture, minimal CSS footprint. Full detail, including the
+color-scheme-to-role mapping table, is in
+[docs/2026-08-10-theme-work.md](docs/2026-08-10-theme-work.md).
+
+### Files modified
+- `config/settings_data.json` — re-themed all 5 color schemes to a warm
+  ivory / espresso-charcoal / champagne-gold palette; switched
+  `type_header_font` to `playfair_display_n4`, `type_body_font` to
+  `jost_n4`; `page_width` 1200 → 1400; `spacing_sections` 0 → 16.
+- `assets/base.css` — uppercase + widened letter-spacing on the shared
+  `.button` / `.button-label` rule.
+
+### Sections/components created
+None (settings + shared CSS rule only).
+
+### Metafields created
+None (Phase 2).
+
+### Liquid/CSS/JS changes
+One CSS change (button typography), no Liquid/JS changes — colors/fonts
+flow through Dawn's existing `layout/theme.liquid` CSS-custom-property
+generation automatically.
+
+### Theme settings added
+None — reused existing settings keys.
+
+### Responsive changes
+None specific to this phase.
+
+### Testing performed
+- `node -e "JSON.parse(...)"` sanity check on `settings_data.json`.
+- `npx shopify theme check`: 171 files, **0 errors, 8 warnings** — identical
+  to the Phase 0 baseline, no regressions.
+- Visual/responsive testing deferred to Phase 10 (no live store yet).
+
+### Issues encountered & fixes applied
+None.
+
+### Shopify CLI commands used
+`npx shopify theme check`
+
+### Important decisions
+- Re-themed existing `scheme-1`…`scheme-5` slots in place rather than
+  adding new schemes, so every existing reference to those scheme IDs
+  (card backgrounds, sale/sold-out badge colors, cart drawer, password
+  page) automatically inherits the new palette.
+
+### Assumptions
+- Font IDs `playfair_display_n4` / `jost_n4` are believed valid Shopify
+  font-picker entries but are **unverified against a live store** — static
+  `theme check` can't validate against Shopify's font service. Flagged for
+  a one-click confirm/fix in the Theme Editor once Phase 10 starts.
+
+### Pending work
+- Confirm font rendering live once store access exists.
+- Choose Phase 2 badge colors to stay visually distinct from the
+  gold (sale) / espresso (sold-out) badges this palette already implies.
 
 ---
 

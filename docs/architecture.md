@@ -61,8 +61,17 @@ Dawn v15.5.0 already ships partial badge support — this is what Phase 2
   fonts, etc.) — this is what Perfumate's brand values (Phase 1) go into.
 
 ## Perfumate additions (filled in as phases land)
-- Phase 1: Perfumate color schemes + font pairing in `settings_data.json`.
+- **Phase 1 (done):** Perfumate color palette (warm ivory / espresso-charcoal
+  / champagne-gold) re-themed into the existing `scheme-1`…`scheme-5` slots
+  in `config/settings_data.json`; `playfair_display_n4` (headings) /
+  `jost_n4` (body) font pairing; `page_width` 1400, `spacing_sections` 16;
+  uppercase/tracked button labels via `assets/base.css`. See
+  [2026-08-10-theme-work.md](2026-08-10-theme-work.md) for full detail
+  including the scheme → role mapping table.
 - Phase 2: `snippets/product-badges.liquid` (new), badge metafields
   (`custom.trending`, `custom.latest`, `custom.best_seller`), new badge
-  color-scheme settings, `assets/component-badges.css` (new).
+  color-scheme settings, `assets/component-badges.css` (new). Note:
+  scheme-5 (gold) is already used by `sale_badge_color_scheme` and scheme-3
+  (espresso) by `sold_out_badge_color_scheme` — new trending/latest/
+  best-seller badge colors should stay visually distinct from those.
 - (Further phases documented here as they land.)

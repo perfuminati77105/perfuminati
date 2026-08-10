@@ -16,7 +16,8 @@ referenced from that log.
 | Date | Doc | Topic |
 |------|-----|-------|
 | 2026-08-10 | [2026-08-10-project-setup.md](2026-08-10-project-setup.md) | Git/Shopify CLI project scaffolding |
-| 2026-08-10 | [2026-08-10-store-connection.md](2026-08-10-store-connection.md) | Store domain / CLI auth / `theme dev` setup (pending) |
+| 2026-08-10 | [2026-08-10-store-connection.md](2026-08-10-store-connection.md) | Store domain / CLI auth / `theme dev` setup |
+| 2026-08-10 | [2026-08-10-theme-work.md](2026-08-10-theme-work.md) | Phase 1: brand palette, typography, spacing, buttons |
 | 2026-08-10 | [2026-08-10-metafields.md](2026-08-10-metafields.md) | Product badge metafield definitions & admin setup |
 
 Future dated docs (`YYYY-MM-DD-theme-work.md`,
