@@ -97,4 +97,19 @@ Dawn v15.5.0 already ships partial badge support — this is what Phase 2
   hover isn't available. Card sale price gets a champagne-gold accent
   (`#c7a76c`, matching color scheme 5) to stand out from the struck-through
   compare-at price. No Liquid changes this phase.
+- **Phase 4 (done):** `templates/index.json` rebuilt from Dawn's stock
+  single hero + featured-collection into a full 8-section homepage
+  narrative, entirely via existing Dawn section/block types (no new
+  sections created): hero (`image-banner`, 2 CTAs) → Trending Now / New
+  Arrivals / Best Sellers (3x `featured-collection`) → discovery promo
+  (`collage`) → brand story (`image-with-text`) → Shop by Collection
+  (`collection-list`) → newsletter (`newsletter`). All copy/settings are
+  customizer-editable; collection pickers point at `all` (trending/new/
+  best-seller) or are left unset (collage, collection-list) for the
+  merchant to assign — see
+  [2026-08-10-metafields.md](2026-08-10-metafields.md) for the automated-
+  collection setup that should eventually back the three
+  featured-collection sections. Color schemes alternate scheme-4 (hero,
+  dark) → 1 → 2 → 1 → 2 → 2 → 1 → scheme-3 (newsletter, dark) for visual
+  rhythm.
 - (Further phases documented here as they land.)

@@ -6,8 +6,8 @@ the full documentation index.
 
 ## Current Status
 
-- **Active phase:** Phase 3 — Product Card Polish (complete), moving to
-  Phase 4 — Homepage
+- **Active phase:** Phase 4 — Homepage (complete), moving to Phase 5 —
+  Product Page
 - **Theme base:** Shopify Dawn v15.5.0 (official `Shopify/dawn` repo, no fork)
 - **Remote:** `https://github.com/perfuminati77105/perfuminati.git`
   (connected, not yet pushed — pushing paused at user's request; git
@@ -235,6 +235,109 @@ Visual/interaction QA once live preview is available (Phase 10).
 
 ### Limitations
 None new this phase.
+
+---
+
+## [2026-08-10 23:15] Phase 4: Homepage
+
+### What changed & why
+Rebuilt `templates/index.json` from Dawn's stock single hero +
+featured-collection into a full premium homepage narrative, using only
+existing Dawn section/block types composed through JSON — no new sections
+or Liquid code. Section schemas (setting ids, valid enum values, block
+types) were confirmed by reading each section's `{% schema %}` block
+directly before writing the JSON, to avoid guessing wrong ids/values that
+`shopify theme check` or the customizer would silently reject.
+
+### Files modified
+- `templates/index.json` (complete rewrite)
+
+### Homepage structure (8 sections, in order)
+1. **Hero** (`image-banner`) — full-bleed image with dark overlay
+   (`image_overlay_opacity: 40`, `color_scheme: scheme-4`), headline "A
+   Signature Scent Awaits", supporting text, primary CTA ("Shop All
+   Fragrances" → `shopify://collections/all`, always valid) and secondary
+   CTA ("Explore Our Story", link left blank for the merchant to set).
+2. **Trending Now** (`featured-collection`) — `quick_add: standard`,
+   `show_secondary_image: true`, portrait image ratio, scheme-1.
+3. **New Arrivals** (`featured-collection`) — same structure, scheme-2.
+4. **Best Sellers** (`featured-collection`) — same structure, scheme-1.
+5. **Discovery collage** (`collage`) — mixed product/collection/image
+   promo tile, scheme-2.
+6. **Brand story** (`image-with-text`) — "Our Story" caption, "Crafted
+   With Intention" heading, brand copy, "Learn More" button, scheme-2.
+7. **Shop by Collection** (`collection-list`) — 3 collection tiles, scheme-1.
+8. **Newsletter** (`newsletter`) — dark scheme-3 close, email signup.
+
+Color schemes alternate through the page (dark hero → light → beige →
+light → beige → beige → light → dark newsletter) for visual rhythm rather
+than a flat single background throughout.
+
+### Sections/components created
+None — composition only, using Dawn's existing section types.
+
+### Metafields created
+None this phase (see Phase 2).
+
+### Liquid/CSS/JS changes
+None — JSON template only.
+
+### Theme settings added
+None.
+
+### Responsive changes
+None specific to this phase; relies on each section's existing responsive
+CSS (`columns_mobile` settings explicitly set on grid sections to keep
+mobile layouts sane — e.g. `"2"` for the product grids, `"1"` for
+collection-list).
+
+### Testing performed
+- `node -e "JSON.parse(...)"` — valid JSON.
+- `npx shopify theme check`: **172 files inspected, 0 errors, 8 warnings**
+  — identical pre-existing baseline, no regressions or schema-validation
+  errors from the new template.
+- Visual verification (image placeholders, section flow, spacing rhythm,
+  mobile stacking) **not yet possible** — no live store/theme editor
+  access. Deferred to Phase 10.
+
+### Issues encountered & fixes applied
+None — schemas were confirmed against source before writing JSON,
+avoiding trial-and-error.
+
+### Shopify CLI commands used
+`npx shopify theme check`
+
+### Important decisions
+- The three featured-collection sections (Trending/New/Best Sellers) point
+  at the `all` collection as a working, non-blank default. **This is a
+  placeholder** — per `docs/2026-08-10-metafields.md`, the intended
+  end-state is 3 automated collections keyed on the `custom.trending` /
+  `custom.latest` / `custom.best_seller` metafields, which the merchant
+  (or a future session, once store access exists) should create and then
+  repoint these sections at.
+- The collage and collection-list sections deliberately leave their
+  product/collection pickers unset (Dawn's normal "merchant fills this in
+  via the customizer" pattern) rather than guessing placeholder content,
+  per the "don't hardcode content that should be manageable through
+  Shopify" requirement.
+- Chose `image-banner` over `slideshow` for the hero specifically because
+  it supports 2 buttons (primary + secondary CTA) per the schema research,
+  while `slideshow`'s slide block only supports 1 button per slide.
+
+### Assumptions
+- Hero and brand-story images are unset (Dawn shows its placeholder
+  graphic) since no real product/brand photography exists yet — expected
+  to be uploaded by the merchant via the Theme Editor.
+
+### Pending work
+- Once store access exists: create the 3 automated collections (Phase 2
+  dependency) and repoint the homepage's featured-collection sections at
+  them instead of `all`.
+- Assign real collections to the collage and collection-list blocks.
+- Visual QA in Phase 10.
+
+### Limitations
+Cannot verify actual visual layout/rhythm until live preview is available.
 
 ---
 
