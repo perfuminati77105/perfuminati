@@ -19,6 +19,7 @@ referenced from that log.
 | 2026-08-10 | [2026-08-10-store-connection.md](2026-08-10-store-connection.md) | Store domain / CLI auth / `theme dev` setup |
 | 2026-08-10 | [2026-08-10-theme-work.md](2026-08-10-theme-work.md) | Phase 1: brand palette, typography, spacing, buttons |
 | 2026-08-10 | [2026-08-10-metafields.md](2026-08-10-metafields.md) | Product badge metafield definitions & admin setup |
+| 2026-08-11 | [2026-08-11-testing.md](2026-08-11-testing.md) | Phase 9 full static QA pass (theme check, JSON validation, overflow review) |
 
 Future dated docs (`YYYY-MM-DD-theme-work.md`,
 `YYYY-MM-DD-responsive-design.md`, `YYYY-MM-DD-testing.md`, etc.) will be

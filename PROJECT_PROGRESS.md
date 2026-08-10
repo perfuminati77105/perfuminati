@@ -6,8 +6,9 @@ the full documentation index.
 
 ## Current Status
 
-- **Active phase:** Phase 8 — Cart & Micro-interactions (complete),
-  moving to Phase 9 — Full Static QA Pass
+- **Active phase:** Phase 9 — Full Static QA Pass (complete). Phases 0–9
+  of the implementation plan are done. Only Phase 10 (live preview
+  testing) remains, blocked on the store domain.
 - **Theme base:** Shopify Dawn v15.5.0 (official `Shopify/dawn` repo, no fork)
 - **Remote:** `https://github.com/perfuminati77105/perfuminati.git`
   (connected, not yet pushed — pushing paused at user's request; git
@@ -26,6 +27,75 @@ the full documentation index.
   Shopify theme. All work is local-only / dev-store preview only. (Pushing
   source code to the private GitHub repo above is separate from deploying
   to a Shopify store, and does not touch any live theme.)
+
+---
+
+## [2026-08-11 00:35] Phase 9: Full Static QA Pass
+
+### What changed & why
+Verification-only pass across the complete, final theme (not just files
+touched in a single phase) — the last thing achievable before live store
+access is available. Full detail in
+[docs/2026-08-11-testing.md](docs/2026-08-11-testing.md).
+
+### Files modified
+None — this phase makes no code changes, only verifies existing code.
+
+### What was checked
+1. `npx shopify theme check` across the whole theme: **172 files, 0
+   errors, 8 warnings** — identical to the Phase 0 baseline; zero new
+   issues introduced across all 8 customization phases.
+2. All 77 JSON files in the repository parsed successfully (not just the
+   ones edited this session).
+3. Brace-balance check on every CSS file touched this session — all
+   balanced, no unclosed rules.
+4. Manual review of new/modified CSS for overflow risk: badge stack
+   safeguards (`max-width`, `text-overflow: ellipsis`), hover effects
+   confirmed contained by existing `overflow: hidden` media wrappers, the
+   `page_width: 1400` setting confirmed within Dawn's supported range with
+   no conflicting hardcoded pixel assumptions found in `assets/`.
+
+### Sections/components created
+None.
+
+### Metafields created
+None.
+
+### Liquid/CSS/JS changes
+None — QA only.
+
+### Theme settings added
+None.
+
+### Responsive changes
+None — reviewed, not changed.
+
+### Testing performed
+See "What was checked" above and the full write-up in
+`docs/2026-08-11-testing.md`, including an explicit list of what remains
+untestable without a live store (visual rendering, real interactions,
+device viewports, font rendering, badge behavior against real metafield
+values, cart/checkout flow, performance).
+
+### Issues encountered & fixes applied
+None — everything reviewed was already clean; no fixes were necessary.
+
+### Shopify CLI commands used
+`npx shopify theme check`
+
+### Important decisions
+None new.
+
+### Assumptions
+None new.
+
+### Pending work
+Phase 10 (live preview testing) — blocked on the store domain.
+
+### Limitations
+This entire pass is static/code-level. Real visual and interaction
+verification is not possible without a connected store, as documented
+throughout every prior phase.
 
 ---
 

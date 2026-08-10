@@ -156,4 +156,16 @@ Dawn v15.5.0 already ships partial badge support — this is what Phase 2
   UI already inherits the button/price/badge styling from earlier phases
   via shared classes; deeper cart CSS auditing (overflow, spacing) is
   covered by Phase 9's full QA pass rather than duplicated here.
+- **Phase 9 (done):** Full static QA pass — no code changes, verification
+  only. `shopify theme check` run against the complete, final theme: 172
+  files, 0 errors, 8 warnings (the same pre-existing baseline from Phase
+  0, unchanged across all 8 subsequent phases). All 77 JSON files in the
+  theme validated as syntactically correct. Brace-balance check on every
+  CSS file touched this session (`base.css`, `component-card.css`,
+  `component-badges.css`) confirmed no unclosed rules. Manually reviewed
+  new/modified CSS for overflow risk (badge stack has `max-width: 100%` +
+  `text-overflow: ellipsis` safeguards; no new fixed pixel widths that
+  could exceed viewport at any breakpoint). See
+  [2026-08-11-testing.md](2026-08-11-testing.md) for the full pass log and
+  the explicit list of what remains untested until live preview.
 - (Further phases documented here as they land.)
