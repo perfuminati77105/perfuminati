@@ -383,27 +383,48 @@
 @media screen and (min-width: 990px) {
   .card .media.media--hover-effect > img:only-child,
   .card-wrapper .media.media--hover-effect > img:only-child {
-    transition: transform var(--duration-long) ease;
+    transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
   }
 
   .card:hover .media.media--hover-effect > img:first-child:only-child,
   .card-wrapper:hover .media.media--hover-effect > img:first-child:only-child {
-    transform: scale(1.03);
+    transform: scale(1.04);
+  }
+
+  .card .media.media--hover-effect > img:first-child:not(:only-child) {
+    transition: opacity 0.4s ease;
   }
 
   .card-wrapper:hover .media.media--hover-effect > img:first-child:not(:only-child) {
     opacity: 0;
   }
 
+  .card .media.media--hover-effect > img + img {
+    transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
   .card-wrapper:hover .media.media--hover-effect > img + img {
     opacity: 1;
-    transition: transform var(--duration-long) ease;
-    transform: scale(1.03);
+    transform: scale(1.04);
   }
 
   .underline-links-hover:hover a {
     text-decoration: underline;
     text-underline-offset: 0.3rem;
+  }
+
+  /* Quick add fades in on hover/focus for a cleaner default card look.
+     Always visible below this breakpoint, where hover isn't available. */
+  .card:not(.card--horizontal) .quick-add {
+    opacity: 0;
+    transform: translateY(0.4rem);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .card-wrapper:hover .card:not(.card--horizontal) .quick-add,
+  .card-wrapper:focus-within .card:not(.card--horizontal) .quick-add {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -476,6 +497,13 @@
 
 .card-information > .price {
   color: rgb(var(--color-foreground));
+}
+
+/* Echoes the champagne-gold accent (color scheme 5) used across the
+   theme, to make the discounted price stand out on product cards. */
+.card-information .price--on-sale .price-item--sale {
+  color: #c7a76c;
+  font-weight: 500;
 }
 
 .card--horizontal .card-information > .price {

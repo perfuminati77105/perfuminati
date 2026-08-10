@@ -89,4 +89,12 @@ Dawn v15.5.0 already ships partial badge support — this is what Phase 2
   that JS-reactive toggle — they're rendered once, server-side, in the PDP
   `title` block instead, which is simpler and avoids duplicating the
   priority/cap logic in two places.
+- **Phase 3 (done):** `assets/component-card.css` polish — smoother
+  crossfade+scale on the secondary hover image (explicit cubic-bezier
+  easing, symmetric opacity transition on both images instead of only the
+  second), quick-add button now fades in on card hover/focus at desktop
+  widths (≥990px) via CSS only, always visible below that breakpoint where
+  hover isn't available. Card sale price gets a champagne-gold accent
+  (`#c7a76c`, matching color scheme 5) to stand out from the struck-through
+  compare-at price. No Liquid changes this phase.
 - (Further phases documented here as they land.)
