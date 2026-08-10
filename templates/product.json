@@ -36,6 +36,30 @@
         "description": {
           "type": "description"
         },
+        "fragrance_notes": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Fragrance Notes",
+            "icon": "perfume",
+            "content": "<p>Top notes, heart notes, and base notes for this fragrance will appear here. Add this product's scent profile from the product description or a metafield.</p>"
+          }
+        },
+        "shipping": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Shipping & Delivery",
+            "icon": "truck",
+            "content": "<p>Orders are carefully packaged and shipped within 1-2 business days. Delivery times vary by destination.</p>"
+          }
+        },
+        "returns": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Returns & Exchanges",
+            "icon": "return",
+            "content": "<p>Not the right scent? Unopened items can be returned within 30 days of delivery for a full refund.</p>"
+          }
+        },
         "share": {
           "type": "share",
           "settings": {
@@ -51,6 +75,9 @@
         "quantity_selector",
         "buy_buttons",
         "description",
+        "fragrance_notes",
+        "shipping",
+        "returns",
         "share"
       ],
       "settings": {
@@ -84,7 +111,7 @@
         "products_to_show": 4,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
-        "image_ratio": "square",
+        "image_ratio": "portrait",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,

@@ -112,4 +112,16 @@ Dawn v15.5.0 already ships partial badge support — this is what Phase 2
   featured-collection sections. Color schemes alternate scheme-4 (hero,
   dark) → 1 → 2 → 1 → 2 → 2 → 1 → scheme-3 (newsletter, dark) for visual
   rhythm.
+- **Phase 5 (done):** `templates/product.json` — added 3 `collapsible_tab`
+  blocks (Fragrance Notes / Shipping & Delivery / Returns & Exchanges,
+  using Dawn's built-in icon set incl. a literal "perfume" and "truck" and
+  "return" icon) between the description and share blocks, and changed
+  `related-products`' `image_ratio` to `portrait` to match the homepage
+  grids. Badges (Phase 2), dynamic checkout (`show_dynamic_checkout:
+  true`), and the `disclosures` section were already present/enabled in
+  Dawn v15.5's stock `product.json` — no changes needed there. Note: the
+  `disclosures` section renders nothing until the merchant configures
+  Shopify's native Disclosures feature (Admin-managed `product.metafields.shopify.disclosure`,
+  distinct from our Phase 2 `custom.*` badge metafields) — it's a
+  self-hiding optional section, not a defect.
 - (Further phases documented here as they land.)

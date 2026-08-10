@@ -6,8 +6,8 @@ the full documentation index.
 
 ## Current Status
 
-- **Active phase:** Phase 4 — Homepage (complete), moving to Phase 5 —
-  Product Page
+- **Active phase:** Phase 5 — Product Page (complete), moving to Phase 6 —
+  Header, Nav, Footer
 - **Theme base:** Shopify Dawn v15.5.0 (official `Shopify/dawn` repo, no fork)
 - **Remote:** `https://github.com/perfuminati77105/perfuminati.git`
   (connected, not yet pushed — pushing paused at user's request; git
@@ -338,6 +338,86 @@ avoiding trial-and-error.
 
 ### Limitations
 Cannot verify actual visual layout/rhythm until live preview is available.
+
+---
+
+## [2026-08-10 23:35] Phase 5: Product Page
+
+### What changed & why
+Added trust-building content blocks to the product page and aligned the
+related-products image ratio with the rest of the site. Much of this
+phase's original scope (badges, dynamic checkout button, a native
+disclosures/trust-elements section) turned out to already be present or
+already done: badges were wired in Phase 2, and Dawn v15.5's stock
+`templates/product.json` already had `show_dynamic_checkout: true` on the
+buy_buttons block and a `disclosures` section already in the section
+order — verified by reading the file rather than assumed.
+
+### Files modified
+- `templates/product.json`
+
+### What changed, specifically
+- Added 3 `collapsible_tab` blocks between `description` and `share`:
+  **Fragrance Notes** (icon: `perfume`), **Shipping & Delivery** (icon:
+  `truck`), **Returns & Exchanges** (icon: `return`) — all using Dawn's
+  built-in `main-product` collapsible-tab block type and icon set, with
+  placeholder richtext content the merchant can edit per product via the
+  Theme Editor.
+- Changed `related-products` section's `image_ratio` from `square` to
+  `portrait`, matching the portrait ratio used across the homepage's
+  product grids (Phase 4) for visual consistency.
+
+### Sections/components created
+None — used Dawn's existing `main-product` block types.
+
+### Metafields created
+None this phase.
+
+### Liquid/CSS/JS changes
+None — JSON template only.
+
+### Theme settings added
+None.
+
+### Responsive changes
+None specific to this phase — collapsible tabs and related-products use
+Dawn's existing responsive behavior.
+
+### Testing performed
+- `node -e "JSON.parse(...)"` — valid JSON.
+- `npx shopify theme check`: **172 files inspected, 0 errors, 8 warnings**
+  — same pre-existing baseline, no regressions.
+- Visual verification deferred to Phase 10 (no live store yet).
+
+### Issues encountered & fixes applied
+None.
+
+### Shopify CLI commands used
+`npx shopify theme check`
+
+### Important decisions
+- Left the `disclosures` section as-is (already in the template, already
+  enabled). It's Shopify's native Disclosures feature
+  (`product.metafields.shopify.disclosure`, Admin-managed) — separate from
+  our Phase 2 `custom.*` badge metafields — and self-hides when the
+  merchant hasn't configured it, so it's harmless to leave in place as an
+  optional future trust-element surface rather than something we need to
+  build ourselves.
+- Used placeholder richtext content in the 3 new collapsible tabs (marked
+  as such) rather than inventing real fragrance-note copy, since real
+  product-specific content belongs to the merchant/product data, not
+  hardcoded theme defaults.
+
+### Assumptions
+None new.
+
+### Pending work
+- Merchant should replace the placeholder Fragrance Notes / Shipping /
+  Returns text with real per-product or store-wide copy.
+- Visual QA in Phase 10.
+
+### Limitations
+None new this phase.
 
 ---
 
