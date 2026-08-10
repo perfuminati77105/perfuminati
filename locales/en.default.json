@@ -118,6 +118,9 @@
       "inventory_out_of_stock_continue_selling": "In stock",
       "sku": "SKU",
       "on_sale": "Sale",
+      "trending": "Trending",
+      "latest": "New",
+      "best_seller": "Best Seller",
       "product_variants": "Product variants",
       "media": {
         "gallery_viewer": "Gallery Viewer",

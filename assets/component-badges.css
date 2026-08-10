@@ -1,0 +1,32 @@
+/* Perfumate product badge stack (snippets/product-badges.liquid) */
+
+.product-badges {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.card__badge .product-badges {
+  max-width: 100%;
+}
+
+.product-badge {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* On the product page the badge stack sits in normal document flow above
+   the title, so lay badges out in a wrapping row instead of a column. */
+.product-badges--pdp {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.product-badges--pdp .product-badge {
+  white-space: normal;
+}

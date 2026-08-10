@@ -68,10 +68,25 @@ Dawn v15.5.0 already ships partial badge support — this is what Phase 2
   uppercase/tracked button labels via `assets/base.css`. See
   [2026-08-10-theme-work.md](2026-08-10-theme-work.md) for full detail
   including the scheme → role mapping table.
-- Phase 2: `snippets/product-badges.liquid` (new), badge metafields
-  (`custom.trending`, `custom.latest`, `custom.best_seller`), new badge
-  color-scheme settings, `assets/component-badges.css` (new). Note:
-  scheme-5 (gold) is already used by `sale_badge_color_scheme` and scheme-3
-  (espresso) by `sold_out_badge_color_scheme` — new trending/latest/
-  best-seller badge colors should stay visually distinct from those.
+- **Phase 2 (done):** `snippets/product-badges.liquid` (new) — single
+  source of truth for Sold Out / New / Best Seller / Trending / Sale
+  badges, text-only (no emoji, per project owner decision). Reads
+  `product.metafields.custom.trending` / `.latest` / `.best_seller`
+  defensively (nil-safe). Wired into `snippets/card-product.liquid` (both
+  badge slots, covering every card grid site) and
+  `sections/main-product.liquid` (`title` block, PDP). New
+  `assets/component-badges.css` handles the (up to 2) badge stack layout.
+  New settings: `latest_badge_color_scheme` (scheme-5 gold),
+  `best_seller_badge_color_scheme` (scheme-1 ivory),
+  `trending_badge_color_scheme` (scheme-3 espresso). Full detail, priority
+  rule, and metafield setup checklist:
+  [2026-08-10-metafields.md](2026-08-10-metafields.md).
+  **Deliberate deviation from the original phase plan:** `snippets/price.liquid`'s
+  `show_badges` path was left untouched. That mechanism exists to let
+  price.js toggle Sale/Sold-Out badges via CSS classes when the *selected
+  variant* changes, without a page reload. Our new badges are product-level
+  (metafields + `product.available`), not variant-level, so they don't need
+  that JS-reactive toggle — they're rendered once, server-side, in the PDP
+  `title` block instead, which is simpler and avoids duplicating the
+  priority/cap logic in two places.
 - (Further phases documented here as they land.)

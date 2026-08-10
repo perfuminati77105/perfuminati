@@ -6,20 +6,140 @@ the full documentation index.
 
 ## Current Status
 
-- **Active phase:** Phase 1 — Brand Foundations (complete), moving to
-  Phase 2 — Metafields & Product Badges
+- **Active phase:** Phase 2 — Metafields & Product Badges (complete),
+  moving to Phase 3 — Product Card Polish
 - **Theme base:** Shopify Dawn v15.5.0 (official `Shopify/dawn` repo, no fork)
 - **Remote:** `https://github.com/perfuminati77105/perfuminati.git`
+  (connected, not yet pushed — pushing paused at user's request; git
+  history remains local-only until they say go)
 - **Open blockers:**
   - Dev/staging Shopify store domain not yet provided by user. `shopify
     theme dev` (live preview) and any Shopify Admin work (creating
     metafield definitions, automated collections) are blocked until this
     is supplied. See
     [docs/2026-08-10-store-connection.md](docs/2026-08-10-store-connection.md).
+  - Metafield definitions (`custom.trending`, `custom.latest`,
+    `custom.best_seller`) not yet created in Shopify Admin — needs store
+    access. Theme code already reads them defensively in the meantime. See
+    [docs/2026-08-10-metafields.md](docs/2026-08-10-metafields.md).
 - **Do not deploy:** No work in this project may be pushed to any live
   Shopify theme. All work is local-only / dev-store preview only. (Pushing
   source code to the private GitHub repo above is separate from deploying
   to a Shopify store, and does not touch any live theme.)
+
+---
+
+## [2026-08-10 22:15] Phase 2: Metafields & Product Badges System
+
+### What changed & why
+Built the dynamic product badge system — the project's centerpiece
+technical feature — as a single reusable snippet driven by 3 boolean
+product metafields plus Shopify's native availability/sale data, wired
+into every product-card context and the product page. Full detail,
+including the confirmed stacking/priority rule and the metafield admin
+setup checklist, is in
+[docs/2026-08-10-metafields.md](docs/2026-08-10-metafields.md).
+
+### Files modified/created
+- `snippets/product-badges.liquid` (new) — single source of truth for all
+  badge rendering.
+- `assets/component-badges.css` (new) — badge stack layout (column on
+  cards, wrapping row on PDP).
+- `snippets/card-product.liquid` — both existing badge slots replaced with
+  calls to `product-badges.liquid`; simplified the `aria-labelledby`
+  wiring on both card title links to always reference the badge element id
+  (safe — browsers ignore `aria-labelledby` references to non-existent
+  ids, so this works whether or not a badge actually renders).
+- `sections/main-product.liquid` — badge render added to the `title`
+  block; added `component-badges.css` to the section's stylesheet includes.
+- `config/settings_schema.json` — 3 new color-scheme settings in the
+  existing `t:settings_schema.badges` group:
+  `latest_badge_color_scheme`, `best_seller_badge_color_scheme`,
+  `trending_badge_color_scheme`.
+- `config/settings_data.json` — default values for the 3 new settings.
+- `locales/en.default.json` — new `products.product.trending` / `.latest`
+  / `.best_seller` keys.
+- `locales/en.default.schema.json` — labels for the 3 new theme settings.
+
+### Sections/components created
+`snippets/product-badges.liquid`, `assets/component-badges.css`.
+
+### Metafields created
+**None yet in Shopify Admin** (needs store access — see blockers above).
+Specified and documented: `custom.trending`, `custom.latest`,
+`custom.best_seller`, all Boolean. Theme code reads them defensively
+(nil-safe) so the theme works correctly whether or not the definitions
+exist yet.
+
+### Liquid/CSS/JS changes
+Liquid: 1 new snippet, 2 files wired to call it (see above). CSS: 1 new
+file. No JavaScript changes — badges are server-rendered per page load,
+deliberately not wired into the variant-reactive JS badge mechanism in
+`snippets/price.liquid` (see `docs/architecture.md` for the reasoning).
+
+### Theme settings added
+`latest_badge_color_scheme`, `best_seller_badge_color_scheme`,
+`trending_badge_color_scheme` (all `color_scheme` type, in the existing
+Badges settings group).
+
+### Responsive changes
+Badge stack CSS uses flexbox with `flex-wrap`/`text-overflow: ellipsis`
+safeguards to avoid overflow on narrow cards; full breakpoint visual
+verification deferred to Phase 9 (static review) and Phase 10 (live).
+
+### Testing performed
+- `node -e "JSON.parse(...)"` on all 4 edited JSON files — valid.
+- `npx shopify theme check`: **172 files inspected, 0 errors, 8 warnings**
+  — same 8 pre-existing warnings as the Phase 0 baseline, no regressions,
+  and the new `product-badges.liquid` snippet itself is fully clean.
+- Manual call-site trace (see `docs/2026-08-10-metafields.md`): confirmed
+  `card-product.liquid` badge rendering covers every grid — homepage
+  featured collections, collection pages, search results, related
+  products, collage sections, and the PDP's own complementary-products row
+  — since they all render through the one shared snippet.
+- Live/visual badge testing (metafields toggled on real products, sold-out
+  state, stacking appearance) blocked on store access — checklist ready in
+  the metafields doc for Phase 10.
+
+### Issues encountered & fixes applied
+None.
+
+### Shopify CLI commands used
+`npx shopify theme check`
+
+### Important decisions
+- **No emoji in badges.** The original spec listed 🔥/✨/⭐ as illustrative
+  labels; the project owner asked mid-session to drop emoji from the
+  actual badges for a cleaner, more premium look. Badges are text-only
+  ("Trending", "New", "Best Seller", "Sold Out").
+- Folded Dawn's existing Sale badge into the same priority-capped list
+  (New > Best Seller > Trending > Sale, max 2 shown) rather than leaving
+  it as a separate, uncapped badge — see the metafields doc for the
+  reasoning and how to revert this specific choice if unwanted.
+- Left `snippets/price.liquid`'s `show_badges` mechanism untouched — it's
+  a variant-reactive JS-driven toggle for Sale/Sold-Out that doesn't apply
+  to our product-level metafield badges. See `docs/architecture.md`.
+- Chose `aria-labelledby` to always reference the badge element id rather
+  than conditionally including it, since unmatched id references are
+  silently ignored by browsers/assistive tech — simpler and avoids
+  duplicating the badge-visibility logic in the calling template.
+
+### Assumptions
+- Badge color scheme assignments (gold for New, ivory for Best Seller,
+  espresso for Trending) were chosen to avoid two badges looking identical
+  when stacked together — visual confirmation pending Phase 10.
+
+### Pending work
+- Create the 3 metafield definitions in Shopify Admin once store access
+  exists (checklist in the metafields doc).
+- Run the metafields doc's testing checklist against real products once
+  definitions exist.
+- Phase 4 dependency: 3 automated collections (Trending/New/Best Sellers)
+  keyed on these metafields, for the homepage — documented, not yet built.
+
+### Limitations
+- Cannot verify actual visual badge appearance (stacking, color contrast,
+  responsive wrapping) until live preview is available.
 
 ---
 

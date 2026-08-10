@@ -1,0 +1,117 @@
+{% comment %}
+  Renders Perfumate's dynamic product badge stack: Sold Out, New/Latest,
+  Best Seller, Trending, and Sale — driven by product availability and
+  three boolean product metafields (namespace 'custom': trending, latest,
+  best_seller). See docs/2026-08-10-metafields.md for the metafield
+  definitions this snippet expects, and docs/architecture.md for how this
+  extends Dawn's existing badge markup.
+
+  Accepts:
+  - product: {Object} Product Liquid object (required)
+  - id_prefix: {String} Prefix for the element id used by aria-labelledby
+    on the calling card/title link. Must be unique per badge region on the
+    page (e.g. 'Badge', 'NoMediaStandardBadge', 'PdpBadge'). Default: 'Badge'
+  - section_id: {String} Section id, combined with product.id to build a
+    unique element id, matching the pattern used elsewhere in this theme
+    (optional; falls back to product.id alone if not supplied)
+  - context: {String} 'card' (default, stacks badges in a column over
+    product media) or 'pdp' (lays badges out in a wrapping row above the
+    product title)
+
+  Stacking rule (confirmed 2026-08-10):
+  - Sold Out is exclusive: if the product is unavailable, only the Sold
+    Out badge renders and every other badge is suppressed.
+  - Otherwise, show at most 2 badges, in priority order:
+    New (latest) > Best Seller > Trending > Sale.
+
+  Usage:
+  {% render 'product-badges', product: card_product, id_prefix: 'Badge', section_id: section_id %}
+{% endcomment %}
+{%- liquid
+  assign badge_id = id_prefix | default: 'Badge'
+  if section_id
+    assign badge_id = badge_id | append: '-' | append: section_id | append: '-' | append: product.id
+  else
+    assign badge_id = badge_id | append: '-' | append: product.id
+  endif
+
+  assign is_sold_out = false
+  if product.available == false
+    assign is_sold_out = true
+  endif
+
+  assign is_latest = false
+  if product.metafields.custom.latest.value
+    assign is_latest = true
+  endif
+
+  assign is_best_seller = false
+  if product.metafields.custom.best_seller.value
+    assign is_best_seller = true
+  endif
+
+  assign is_trending = false
+  if product.metafields.custom.trending.value
+    assign is_trending = true
+  endif
+
+  assign is_on_sale = false
+  if product.compare_at_price > product.price and product.available
+    assign is_on_sale = true
+  endif
+
+  assign shown_count = 0
+  assign show_latest = false
+  assign show_best_seller = false
+  assign show_trending = false
+  assign show_sale = false
+
+  unless is_sold_out
+    if is_latest and shown_count < 2
+      assign show_latest = true
+      assign shown_count = shown_count | plus: 1
+    endif
+    if is_best_seller and shown_count < 2
+      assign show_best_seller = true
+      assign shown_count = shown_count | plus: 1
+    endif
+    if is_trending and shown_count < 2
+      assign show_trending = true
+      assign shown_count = shown_count | plus: 1
+    endif
+    if is_on_sale and shown_count < 2
+      assign show_sale = true
+      assign shown_count = shown_count | plus: 1
+    endif
+  endunless
+-%}
+{%- if is_sold_out or show_latest or show_best_seller or show_trending or show_sale -%}
+  <div class="product-badges{% if context == 'pdp' %} product-badges--pdp{% endif %}" id="{{ badge_id }}">
+    {%- if is_sold_out -%}
+      <span class="badge product-badge product-badge--sold-out color-{{ settings.sold_out_badge_color_scheme }}">
+        {{- 'products.product.sold_out' | t -}}
+      </span>
+    {%- else -%}
+      {%- if show_latest -%}
+        <span class="badge product-badge product-badge--latest color-{{ settings.latest_badge_color_scheme }}">
+          {{- 'products.product.latest' | t -}}
+        </span>
+      {%- endif -%}
+      {%- if show_best_seller -%}
+        <span class="badge product-badge product-badge--best-seller color-{{ settings.best_seller_badge_color_scheme }}">
+          {{- 'products.product.best_seller' | t -}}
+        </span>
+      {%- endif -%}
+      {%- if show_trending -%}
+        <span class="badge product-badge product-badge--trending color-{{ settings.trending_badge_color_scheme }}">
+          {{- 'products.product.trending' | t -}}
+        </span>
+      {%- endif -%}
+      {%- if show_sale -%}
+        <span class="badge product-badge product-badge--sale color-{{ settings.sale_badge_color_scheme }}">
+          {{- 'products.product.on_sale' | t -}}
+        </span>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+{%- endif -%}
