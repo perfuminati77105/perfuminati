@@ -60,9 +60,9 @@
           }
         }
       },
-      "type_header_font": "playfair_display_n4",
+      "type_header_font": "work_sans_n6",
       "heading_scale": 100,
-      "type_body_font": "jost_n4",
+      "type_body_font": "work_sans_n4",
       "body_scale": 100,
       "page_width": 1400,
       "spacing_sections": 16,
