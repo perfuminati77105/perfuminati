@@ -11,11 +11,18 @@
             "show_social": true
           }
         },
-        "quick_links": {
+        "company_links": {
           "type": "link_list",
           "settings": {
-            "heading": "Quick Links",
-            "menu": "footer"
+            "heading": "Company",
+            "menu": "footer-company"
+          }
+        },
+        "support_links": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Support",
+            "menu": "footer-support"
           }
         },
         "about": {
@@ -26,7 +33,7 @@
           }
         }
       },
-      "block_order": ["brand", "quick_links", "about"],
+      "block_order": ["brand", "company_links", "support_links", "about"],
       "settings": {
         "color_scheme": "scheme-1",
         "newsletter_enable": true,
