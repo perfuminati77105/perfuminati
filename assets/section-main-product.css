@@ -2,6 +2,26 @@ product-info {
   display: block;
 }
 
+.product-pairs-well {
+  margin-bottom: 2.5rem;
+}
+
+.product-pairs-well__heading {
+  margin-bottom: 1.5rem;
+}
+
+.product-pairs-well__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.product-pairs-well__item {
+  min-width: 0;
+}
+
 .product {
   margin: 0;
 }

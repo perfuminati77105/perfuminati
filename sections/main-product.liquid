@@ -704,6 +704,81 @@
                       <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
                     {%- endif -%}
                   </product-recommendations>
+                {%- when 'manual_complementary' -%}
+                  {%- assign has_manual_products = false -%}
+                  {%- if block.settings.product_1 != blank
+                    or block.settings.product_2 != blank
+                    or block.settings.product_3 != blank
+                    or block.settings.product_4 != blank
+                  -%}
+                    {%- assign has_manual_products = true -%}
+                  {%- endif -%}
+                  {%- if has_manual_products -%}
+                    {{ 'component-card.css' | asset_url | stylesheet_tag }}
+                    {{ 'quick-add.css' | asset_url | stylesheet_tag }}
+                    <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+                    <div class="product-pairs-well quick-add-hidden" {{ block.shopify_attributes }}>
+                      <h2 class="h3 product-pairs-well__heading">{{ block.settings.heading | escape }}</h2>
+                      <ul class="product-pairs-well__list list-unstyled" role="list">
+                        {%- if block.settings.product_1 != blank -%}
+                          <li class="product-pairs-well__item">
+                            {%- render 'card-product',
+                              card_product: block.settings.product_1,
+                              media_aspect_ratio: 'square',
+                              show_secondary_image: false,
+                              lazy_load: true,
+                              quick_add: 'standard',
+                              section_id: section.id,
+                              horizontal_class: true,
+                              horizontal_quick_add: true
+                            -%}
+                          </li>
+                        {%- endif -%}
+                        {%- if block.settings.product_2 != blank -%}
+                          <li class="product-pairs-well__item">
+                            {%- render 'card-product',
+                              card_product: block.settings.product_2,
+                              media_aspect_ratio: 'square',
+                              show_secondary_image: false,
+                              lazy_load: true,
+                              quick_add: 'standard',
+                              section_id: section.id,
+                              horizontal_class: true,
+                              horizontal_quick_add: true
+                            -%}
+                          </li>
+                        {%- endif -%}
+                        {%- if block.settings.product_3 != blank -%}
+                          <li class="product-pairs-well__item">
+                            {%- render 'card-product',
+                              card_product: block.settings.product_3,
+                              media_aspect_ratio: 'square',
+                              show_secondary_image: false,
+                              lazy_load: true,
+                              quick_add: 'standard',
+                              section_id: section.id,
+                              horizontal_class: true,
+                              horizontal_quick_add: true
+                            -%}
+                          </li>
+                        {%- endif -%}
+                        {%- if block.settings.product_4 != blank -%}
+                          <li class="product-pairs-well__item">
+                            {%- render 'card-product',
+                              card_product: block.settings.product_4,
+                              media_aspect_ratio: 'square',
+                              show_secondary_image: false,
+                              lazy_load: true,
+                              quick_add: 'standard',
+                              section_id: section.id,
+                              horizontal_class: true,
+                              horizontal_quick_add: true
+                            -%}
+                          </li>
+                        {%- endif -%}
+                      </ul>
+                    </div>
+                  {%- endif -%}
                 {%- when 'icon-with-text' -%}
                   {% render 'icon-with-text', block: block %}
               {%- endcase -%}
@@ -1607,6 +1682,39 @@
           "id": "enable_quick_add",
           "label": "t:sections.main-product.blocks.complementary_products.settings.enable_quick_add.label",
           "default": false
+        }
+      ]
+    },
+    {
+      "type": "manual_complementary",
+      "name": "Pairs well with (manual)",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Pairs Well With",
+          "label": "Heading"
+        },
+        {
+          "type": "product",
+          "id": "product_1",
+          "label": "Product 1"
+        },
+        {
+          "type": "product",
+          "id": "product_2",
+          "label": "Product 2"
+        },
+        {
+          "type": "product",
+          "id": "product_3",
+          "label": "Product 3"
+        },
+        {
+          "type": "product",
+          "id": "product_4",
+          "label": "Product 4"
         }
       ]
     },

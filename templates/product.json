@@ -62,16 +62,13 @@
           }
         },
         "pairs_well_with": {
-          "type": "complementary",
+          "type": "manual_complementary",
           "settings": {
-            "block_heading": "Pairs Well With",
-            "make_collapsible_row": false,
-            "icon": "price_tag",
-            "product_list_limit": 4,
-            "products_per_page": 2,
-            "pagination_style": "dots",
-            "image_ratio": "square",
-            "enable_quick_add": true
+            "heading": "Pairs Well With",
+            "product_1": "amber-leather-inspired-by-ombre-leather",
+            "product_2": "starry-times",
+            "product_3": "ambush",
+            "product_4": "oriental-spicy"
           }
         },
         "description": {
