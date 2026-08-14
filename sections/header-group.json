@@ -31,11 +31,11 @@
     "header": {
       "type": "header",
       "settings": {
-        "color_scheme": "scheme-4",
-        "menu_color_scheme": "scheme-4",
+        "color_scheme": "scheme-1",
+        "menu_color_scheme": "scheme-1",
         "logo_position": "middle-left",
-        "menu": "main-menu",
-        "menu_type_desktop": "dropdown",
+        "menu": "preview-main-menu",
+        "menu_type_desktop": "mega",
         "sticky_header_type": "always",
         "show_line_separator": true,
         "enable_country_selector": true,
