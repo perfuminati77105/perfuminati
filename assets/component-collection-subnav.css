@@ -1,0 +1,32 @@
+.collection-subnav__scroller {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.collection-subnav__scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.collection-subnav__list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (min-width: 750px) {
+  .collection-subnav__list {
+    flex-wrap: wrap;
+  }
+}
+
+.collection-subnav__item {
+  flex-shrink: 0;
+}
+
+.collection-subnav__link {
+  white-space: nowrap;
+}

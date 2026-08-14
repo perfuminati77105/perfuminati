@@ -4,8 +4,49 @@
       "type": "main-collection-banner",
       "settings": {
         "show_collection_description": true,
-        "show_collection_image": false,
+        "show_collection_image": true,
         "color_scheme": "scheme-1"
+      }
+    },
+    "subnav": {
+      "type": "collection-subnav",
+      "blocks": {
+        "bestsellers": {
+          "type": "link",
+          "settings": {
+            "collection": "bestsellers"
+          }
+        },
+        "for-her": {
+          "type": "link",
+          "settings": {
+            "collection": "for-her"
+          }
+        },
+        "for-him": {
+          "type": "link",
+          "settings": {
+            "collection": "for-him"
+          }
+        },
+        "unisex": {
+          "type": "link",
+          "settings": {
+            "collection": "unisex-1"
+          }
+        },
+        "aura": {
+          "type": "link",
+          "settings": {
+            "collection": "aura-collection"
+          }
+        }
+      },
+      "block_order": ["bestsellers", "for-her", "for-him", "unisex", "aura"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 20
       }
     },
     "product-grid": {
@@ -31,6 +72,7 @@
   },
   "order": [
     "banner",
+    "subnav",
     "product-grid"
   ]
 }
