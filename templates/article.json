@@ -13,7 +13,8 @@
           "type": "title",
           "settings": {
             "blog_show_date": true,
-            "blog_show_author": false
+            "blog_show_author": false,
+            "blog_show_read_time": true
           }
         },
         "share": {
@@ -24,13 +25,25 @@
         },
         "content": {
           "type": "content"
+        },
+        "featured_product": {
+          "type": "product_feature",
+          "settings": {
+            "heading": "Featured in this story",
+            "product": "blush-inspired-by-good-girl-blush"
+          }
+        },
+        "prev_next": {
+          "type": "prev_next_navigation"
         }
       },
       "block_order": [
         "featured_image",
         "title",
         "share",
-        "content"
+        "content",
+        "featured_product",
+        "prev_next"
       ]
     }
   },

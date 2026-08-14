@@ -1,3 +1,17 @@
+.blog-featured-post {
+  margin-bottom: 3rem;
+}
+
+.blog-featured-post .card__heading {
+  font-size: 1.2em;
+}
+
+@media screen and (min-width: 750px) {
+  .blog-featured-post {
+    margin-bottom: 4rem;
+  }
+}
+
 .blog-articles {
   display: grid;
   grid-gap: 1rem;

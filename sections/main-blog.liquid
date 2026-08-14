@@ -22,8 +22,32 @@
       {{ blog.title | escape }}
     </h1>
 
+    {%- liquid
+      assign show_featured = false
+      if section.settings.enable_featured_post and paginate.current_page == 1 and current_tags == blank and blog.articles.size > 0
+        assign show_featured = true
+      endif
+    -%}
+
+    {%- if show_featured -%}
+      <div class="blog-featured-post{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+        {%- render 'article-card',
+          article: blog.articles.first,
+          media_height: 'large',
+          media_aspect_ratio: blog.articles.first.image.aspect_ratio,
+          show_image: section.settings.show_image,
+          show_date: section.settings.show_date,
+          show_author: section.settings.show_author,
+          show_excerpt: true
+        -%}
+      </div>
+    {%- endif -%}
+
     <div class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
       {%- for article in blog.articles -%}
+        {%- if show_featured and forloop.first -%}
+          {%- continue -%}
+        {%- endif -%}
         <div
           class="blog-articles__article article{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           {% if settings.animations_reveal_on_scroll %}
@@ -56,6 +80,12 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_featured_post",
+      "default": true,
+      "label": "Feature the latest post"
+    },
     {
       "type": "select",
       "id": "layout",

@@ -3,6 +3,7 @@
     "main": {
       "type": "main-blog",
       "settings": {
+        "enable_featured_post": true,
         "layout": "collage",
         "show_image": true,
         "image_height": "medium",

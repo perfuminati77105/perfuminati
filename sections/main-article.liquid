@@ -61,6 +61,19 @@
               <span>{{ article.author }}</span>
             </span>
           {%- endif -%}
+          {%- if block.settings.blog_show_read_time -%}
+            {%- liquid
+              assign read_words = article.content | strip_html | split: ' ' | size
+              assign read_minutes = read_words | divided_by: 200 | at_least: 1
+            -%}
+            <span class="circle-divider caption-with-letter-spacing">
+              {%- if read_minutes == 1 -%}
+                1 min read
+              {%- else -%}
+                {{ read_minutes }} min read
+              {%- endif -%}
+            </span>
+          {%- endif -%}
         </header>
 
       {%- when 'content' -%}
@@ -79,6 +92,70 @@
           {% assign share_url = request.origin | append: article.url %}
           {% render 'share-button', block: block, share_link: share_url %}
         </div>
+
+      {%- when 'product_feature' -%}
+        {%- if block.settings.product != blank -%}
+          <div
+            class="article-template__product-feature page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            {{ 'component-card.css' | asset_url | stylesheet_tag }}
+            {{ 'quick-add.css' | asset_url | stylesheet_tag }}
+            <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+            {%- if block.settings.heading != blank -%}
+              <p class="article-template__product-feature-heading caption-with-letter-spacing">
+                {{- block.settings.heading | escape -}}
+              </p>
+            {%- endif -%}
+            <div class="article-template__product-feature-card">
+              {%- render 'card-product',
+                card_product: block.settings.product,
+                media_aspect_ratio: 'square',
+                show_secondary_image: false,
+                lazy_load: true,
+                quick_add: 'standard',
+                horizontal_class: true,
+                horizontal_quick_add: true
+              -%}
+            </div>
+          </div>
+        {%- endif -%}
+
+      {%- when 'prev_next_navigation' -%}
+        {%- if blog.previous_article or blog.next_article -%}
+          <nav
+            class="article-template__prev-next page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            aria-label="More articles"
+            {{ block.shopify_attributes }}
+          >
+            {%- if blog.previous_article -%}
+              <a
+                href="{{ blog.previous_article.url }}"
+                class="article-template__prev-next-link article-template__prev-next-link--prev link"
+              >
+                <span class="article-template__prev-next-label caption-with-letter-spacing">
+                  {{- 'icon-arrow.svg' | inline_asset_content -}}
+                  Previous
+                </span>
+                <span class="article-template__prev-next-title">{{ blog.previous_article.title | escape }}</span>
+              </a>
+            {%- else -%}
+              <span></span>
+            {%- endif -%}
+            {%- if blog.next_article -%}
+              <a
+                href="{{ blog.next_article.url }}"
+                class="article-template__prev-next-link article-template__prev-next-link--next link"
+              >
+                <span class="article-template__prev-next-label caption-with-letter-spacing">
+                  Next
+                  {{- 'icon-arrow.svg' | inline_asset_content -}}
+                </span>
+                <span class="article-template__prev-next-title">{{ blog.next_article.title | escape }}</span>
+              </a>
+            {%- endif -%}
+          </nav>
+        {%- endif -%}
     {%- endcase -%}
   {%- endfor -%}
 
@@ -348,6 +425,12 @@
           "id": "blog_show_author",
           "default": false,
           "label": "t:sections.main-article.blocks.title.settings.blog_show_author.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_read_time",
+          "default": true,
+          "label": "Show reading time"
         }
       ]
     },
@@ -368,6 +451,28 @@
           "default": "t:sections.main-article.blocks.share.settings.text.default"
         }
       ]
+    },
+    {
+      "type": "product_feature",
+      "name": "Featured product",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Featured in this story",
+          "label": "Heading"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    },
+    {
+      "type": "prev_next_navigation",
+      "name": "Prev/next navigation",
+      "limit": 1
     }
   ]
 }
