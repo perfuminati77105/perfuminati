@@ -472,6 +472,22 @@
                       {{ block.settings.text | default: block.settings.page.title | escape }}
                     </button>
                   </modal-opener>
+                {%- when 'help_modal' -%}
+                  <modal-opener
+                    class="product-popup-modal__opener product-help-modal__opener quick-add-hidden"
+                    data-modal="#HelpModal-{{ block.id }}"
+                    {{ block.shopify_attributes }}
+                  >
+                    <button
+                      id="ProductHelp-{{ block.id }}"
+                      class="product-popup-modal__button product-help-modal__button link"
+                      type="button"
+                      aria-haspopup="dialog"
+                    >
+                      <span class="product-help-modal__icon" aria-hidden="true">?</span>
+                      {{ block.settings.text | escape }}
+                    </button>
+                  </modal-opener>
                 {%- when 'share' -%}
                   {% liquid
                     assign share_url = product.selected_variant.url | default: product.url | prepend: request.origin
@@ -723,6 +739,48 @@
             <div class="product-popup-modal__content-info">
               <h1 class="h2">{{ block.settings.page.title | escape }}</h1>
               {{ block.settings.page.content }}
+            </div>
+          </div>
+        </modal-dialog>
+      {%- endfor -%}
+
+      {% assign help_modals = section.blocks | where: 'type', 'help_modal' %}
+      {%- for block in help_modals -%}
+        <modal-dialog id="HelpModal-{{ block.id }}" class="product-popup-modal product-help-modal" {{ block.shopify_attributes }}>
+          <div
+            role="dialog"
+            aria-label="{{ block.settings.text | escape }}"
+            aria-modal="true"
+            class="product-popup-modal__content"
+            tabindex="-1"
+          >
+            <button
+              id="ModalClose-{{ block.id }}"
+              type="button"
+              class="product-popup-modal__toggle"
+              aria-label="{{ 'accessibility.close' | t }}"
+            >
+              {{- 'icon-close.svg' | inline_asset_content -}}
+            </button>
+            <div class="product-popup-modal__content-info product-help-modal__content-info">
+              <h1 class="h2">{{ block.settings.text | escape }}</h1>
+              {%- if block.settings.video != blank -%}
+                <div class="product-help-modal__video">
+                  {%- if block.settings.autoplay -%}
+                    {{
+                      block.settings.video
+                      | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, image_size: '1100x'
+                    }}
+                  {%- else -%}
+                    {{ block.settings.video | video_tag: controls: true, image_size: '1100x' }}
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+              {%- if block.settings.steps != blank -%}
+                <div class="product-help-modal__steps rte">
+                  {{ block.settings.steps }}
+                </div>
+              {%- endif -%}
             </div>
           </div>
         </modal-dialog>
@@ -1238,6 +1296,34 @@
           "id": "page",
           "type": "page",
           "label": "t:sections.main-product.blocks.popup.settings.page.label"
+        }
+      ]
+    },
+    {
+      "type": "help_modal",
+      "name": "Help modal (video + steps)",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "How it works",
+          "label": "Button label"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "checkbox",
+          "id": "autoplay",
+          "default": false,
+          "label": "Autoplay video (muted, loops)"
+        },
+        {
+          "type": "richtext",
+          "id": "steps",
+          "label": "Steps / instructions"
         }
       ]
     },

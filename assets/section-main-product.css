@@ -898,6 +898,34 @@ a.product__text {
   color: rgba(var(--color-foreground), 0.75);
 }
 
+.product-help-modal__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  margin-right: 0.6rem;
+  border-radius: 50%;
+  border: 0.1rem solid currentColor;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.product-help-modal__video {
+  margin-bottom: 2rem;
+}
+
+.product-help-modal__video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--inputs-radius, 0);
+}
+
+.product-help-modal__steps {
+  margin-top: 0.5rem;
+}
+
 .product-popup-modal__toggle .icon {
   height: auto;
   margin: 0;

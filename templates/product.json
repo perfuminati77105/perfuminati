@@ -16,6 +16,22 @@
         "price": {
           "type": "price"
         },
+        "inventory": {
+          "type": "inventory",
+          "settings": {
+            "text_style": "body",
+            "inventory_threshold": 5,
+            "show_inventory_quantity": true
+          }
+        },
+        "batch_code_help": {
+          "type": "help_modal",
+          "settings": {
+            "text": "How to Read Your Batch Code",
+            "autoplay": false,
+            "steps": "<ol><li>Locate the small batch code printed on the base of the bottle.</li><li>The first two letters indicate the production month; the digits that follow indicate the year.</li><li>Still unsure? Contact us with your batch code for verification.</li></ol>"
+          }
+        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -31,6 +47,19 @@
           "settings": {
             "show_dynamic_checkout": true,
             "show_gift_card_recipient": true
+          }
+        },
+        "pairs_well_with": {
+          "type": "complementary",
+          "settings": {
+            "block_heading": "Pairs Well With",
+            "make_collapsible_row": false,
+            "icon": "price_tag",
+            "product_list_limit": 4,
+            "products_per_page": 2,
+            "pagination_style": "dots",
+            "image_ratio": "square",
+            "enable_quick_add": true
           }
         },
         "description": {
@@ -60,6 +89,13 @@
             "content": "<p>Not the right scent? Unopened items can be returned within 30 days of delivery for a full refund.</p>"
           }
         },
+        "fragrance_guide_popup": {
+          "type": "popup",
+          "settings": {
+            "text": "Fragrance Guide",
+            "page": "perfuminati-top-selling-fragrances-catalogue"
+          }
+        },
         "share": {
           "type": "share",
           "settings": {
@@ -71,13 +107,17 @@
         "vendor",
         "title",
         "price",
+        "inventory",
+        "batch_code_help",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
+        "pairs_well_with",
         "description",
         "fragrance_notes",
         "shipping",
         "returns",
+        "fragrance_guide_popup",
         "share"
       ],
       "settings": {
