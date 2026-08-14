@@ -92,12 +92,12 @@
                 {%- when '@app' -%}
                   {% render block %}
                 {%- when 'text' -%}
-                  <p
+                  {% comment %} <p
                     class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
                     {{ block.shopify_attributes }}
                   >
                     {{- block.settings.text -}}
-                  </p>
+                  </p> {% endcomment %}
                 {%- when 'title' -%}
                   <div class="product__title" {{ block.shopify_attributes }}>
                     {%- render 'product-badges', product: product, id_prefix: 'PdpBadge', section_id: section.id, context: 'pdp' -%}
