@@ -1,13 +1,17 @@
 # 2026-08-10 — Product Badge Metafields
 
 ## Status
-**Definitions not yet created** — this requires a connected Shopify store
-(Settings > Custom data lives in Shopify Admin, not in theme code). This
-document is the exact spec/checklist to run once store access exists. The
-theme code (`snippets/product-badges.liquid`) already reads these
-metafields defensively — it will simply show no badge for any flag that
-hasn't been defined yet, so the theme works correctly before and after
-these are created.
+**Definitions created (2026-08-14)** via Admin API on the `custom`
+namespace: `trending`, `latest`, `best_seller` (all Boolean, Product-scoped).
+Demo values were set on three real products to verify the badge stack
+end-to-end (Amber Leather -> latest, Starry Times -> best_seller, Ambush ->
+trending). Also fixed a related bug the same day: `is_on_sale` was
+comparing `product.compare_at_price` (a product-wide aggregate across all
+variants) against `product.price`, which showed a Sale badge even when the
+default/first-available variant itself had no discount (e.g. a product
+whose 50ml variant was discounted but whose default 15ml variant wasn't).
+It now compares `product.selected_or_first_available_variant`'s own price
+and compare_at_price, matching what the price snippet actually displays.
 
 ## Metafield definitions to create
 
