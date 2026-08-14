@@ -108,12 +108,6 @@
             "text": "Fragrance Guide",
             "page": "perfuminati-top-selling-fragrances-catalogue"
           }
-        },
-        "share": {
-          "type": "share",
-          "settings": {
-            "share_label": "Share"
-          }
         }
       },
       "block_order": [
@@ -130,8 +124,7 @@
         "fragrance_notes",
         "shipping",
         "returns",
-        "fragrance_guide_popup",
-        "share"
+        "fragrance_guide_popup"
       ],
       "settings": {
         "enable_sticky_info": true,
