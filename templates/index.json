@@ -43,6 +43,55 @@
         "show_text_below": true
       }
     },
+    "fragrance_of_the_week": {
+      "type": "featured-product",
+      "blocks": {
+        "eyebrow": {
+          "type": "text",
+          "settings": {
+            "text": "Fragrance of the Week",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        }
+      },
+      "block_order": ["eyebrow", "title", "price", "variant_picker", "buy_buttons"],
+      "settings": {
+        "product": "starry-times",
+        "color_scheme": "scheme-2",
+        "secondary_background": false,
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
     "trending_collection": {
       "type": "featured-collection",
       "settings": {
@@ -51,7 +100,7 @@
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "all",
+        "collection": "trending",
         "products_to_show": 8,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
@@ -79,7 +128,7 @@
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "all",
+        "collection": "new-arrivals",
         "products_to_show": 8,
         "columns_desktop": 4,
         "color_scheme": "scheme-2",
@@ -107,7 +156,7 @@
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "all",
+        "collection": "bestsellers",
         "products_to_show": 8,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
@@ -269,6 +318,7 @@
   },
   "order": [
     "hero",
+    "fragrance_of_the_week",
     "trending_collection",
     "new_arrivals",
     "best_sellers",
