@@ -1,0 +1,51 @@
+{% comment %}
+  Renders a full-screen 3D animated wordmark preloader shown only on the
+  homepage while the rest of the page finishes loading.
+
+  Usage:
+  {% render 'homepage-preloader' %}
+{% endcomment %}
+{{ 'component-homepage-preloader.css' | asset_url | stylesheet_tag }}
+<div
+  class="homepage-preloader color-scheme-4"
+  id="HomepagePreloader"
+  role="status"
+  aria-label="Loading"
+>
+  <div class="homepage-preloader__stage">
+    <div class="homepage-preloader__word" aria-hidden="true">
+      {%- assign preloader_word = shop.name | default: 'PERFUMINATI' -%}
+      {%- for character in preloader_word -%}
+        <span class="homepage-preloader__letter" style="--i: {{ forloop.index0 }};">
+          {{- character -}}
+        </span>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+<script>
+  (function () {
+    var preloader = document.getElementById('HomepagePreloader');
+    if (!preloader) return;
+
+    var minDisplayMs = 900;
+    var start = Date.now();
+
+    function reveal() {
+      var elapsed = Date.now() - start;
+      var wait = Math.max(minDisplayMs - elapsed, 0);
+      setTimeout(function () {
+        preloader.setAttribute('data-loaded', '');
+        setTimeout(function () {
+          if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+        }, 750);
+      }, wait);
+    }
+
+    if (document.readyState === 'complete') {
+      reveal();
+    } else {
+      window.addEventListener('load', reveal);
+    }
+  })();
+</script>
