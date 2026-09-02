@@ -13,10 +13,12 @@
       "type": "spray-hero",
       "settings": {
         "color_scheme": "scheme-4",
-        "heading": "A Signature Scent Awaits",
-        "subheading": "Discover Perfumate's collection of rare, long-lasting fragrances, crafted for those who leave an impression.",
-        "button_label": "Shop All Fragrances",
+        "heading": "Luxury, Made Personal.",
+        "subheading": "Extrait de Parfum fragrances at 30-40% oil concentration, crafted for those who leave an impression.",
+        "button_label": "Shop Fragrances",
         "button_link": "shopify://collections/all",
+        "button_label_2": "Explore Collection",
+        "button_link_2": "shopify://collections/aura-collection",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -154,25 +156,133 @@
         "padding_bottom": 48
       }
     },
+    "shop_by_family": {
+      "type": "collection-list",
+      "blocks": {
+        "floral": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "floral"
+          }
+        },
+        "woody": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "woody"
+          }
+        },
+        "fruity": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "fruity"
+          }
+        },
+        "citrus": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "citrus"
+          }
+        },
+        "aromatic-fresh": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "aromatic-fresh-fourgere"
+          }
+        },
+        "spicy": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "oriental-spicy"
+          }
+        }
+      },
+      "block_order": ["floral", "woody", "fruity", "citrus", "aromatic-fresh", "spicy"],
+      "settings": {
+        "title": "Shop by Fragrance Family",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 6,
+        "color_scheme": "scheme-2",
+        "show_view_all": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "why_perfuminati": {
+      "type": "multicolumn",
+      "blocks": {
+        "fact-1": {
+          "type": "column",
+          "settings": {
+            "title": "100+ Fragrances",
+            "text": "<p>A wide-ranging oil-based attar collection, so there's a scent for every taste and occasion.</p>"
+          }
+        },
+        "fact-2": {
+          "type": "column",
+          "settings": {
+            "title": "Extrait de Parfum",
+            "text": "<p>Our most concentrated formulation, built for depth and longevity on the skin.</p>"
+          }
+        },
+        "fact-3": {
+          "type": "column",
+          "settings": {
+            "title": "30-40% Oil Concentration",
+            "text": "<p>A higher oil concentration than typical Eau de Parfum, for a richer, longer-lasting scent.</p>"
+          }
+        },
+        "fact-4": {
+          "type": "column",
+          "settings": {
+            "title": "Accessible Luxury",
+            "text": "<p>Quality fragrance oils without the department-store markup.</p>"
+          }
+        }
+      },
+      "block_order": ["fact-1", "fact-2", "fact-3", "fact-4"],
+      "settings": {
+        "title": "Why Perfuminati",
+        "heading_size": "h1",
+        "image_width": "third",
+        "image_ratio": "adapt",
+        "column_alignment": "center",
+        "background_style": "none",
+        "color_scheme": "scheme-1",
+        "columns_desktop": 4,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
     "discovery_collage": {
       "type": "collage",
       "blocks": {
         "product-1": {
           "type": "product",
           "settings": {
+            "product": "ambush",
             "second_image": true
           }
         },
         "collection-1": {
           "type": "collection",
-          "settings": {}
+          "settings": {
+            "collection": "aura-collection"
+          }
         },
-        "image-1": {
-          "type": "image",
-          "settings": {}
+        "product-2": {
+          "type": "product",
+          "settings": {
+            "product": "amber-leather-inspired-by-ombre-leather",
+            "second_image": false
+          }
         }
       },
-      "block_order": ["product-1", "collection-1", "image-1"],
+      "block_order": ["product-1", "collection-1", "product-2"],
       "settings": {
         "heading": "Discover Your Signature Scent",
         "heading_size": "h1",
@@ -205,7 +315,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Every Perfumate fragrance begins with rare ingredients sourced from across the globe, blended by master perfumers into scents designed to be remembered. This is fragrance as artistry.</p>",
+            "text": "<p>Every Perfuminati fragrance is an Extrait de Parfum, formulated at 30-40% oil concentration from our oil-based attar collection of 100+ fragrances. This is fragrance as artistry, made accessible.</p>",
             "text_style": "body"
           }
         },
@@ -239,23 +349,23 @@
       "blocks": {
         "collection-1": {
           "type": "featured_collection",
-          "settings": {}
+          "settings": {
+            "collection": "aura-collection"
+          }
         },
         "collection-2": {
           "type": "featured_collection",
-          "settings": {}
-        },
-        "collection-3": {
-          "type": "featured_collection",
-          "settings": {}
+          "settings": {
+            "collection": "alchemy-collection"
+          }
         }
       },
-      "block_order": ["collection-1", "collection-2", "collection-3"],
+      "block_order": ["collection-1", "collection-2"],
       "settings": {
-        "title": "Shop by Collection",
+        "title": "Signature Collections",
         "heading_size": "h1",
         "image_ratio": "portrait",
-        "columns_desktop": 3,
+        "columns_desktop": 2,
         "color_scheme": "scheme-1",
         "show_view_all": false,
         "columns_mobile": "1",
@@ -270,7 +380,7 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Join the Perfumate Circle",
+            "heading": "Join the Scent Society",
             "heading_size": "h1"
           }
         },
@@ -300,9 +410,11 @@
     "trending_collection",
     "new_arrivals",
     "best_sellers",
+    "shop_by_family",
+    "shop_by_collection",
+    "why_perfuminati",
     "discovery_collage",
     "brand_story",
-    "shop_by_collection",
     "newsletter"
   ]
 }

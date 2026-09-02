@@ -36,6 +36,19 @@
   color: rgba(var(--color-foreground), 0.75);
 }
 
+.spray-hero__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+@media screen and (min-width: 750px) {
+  .spray-hero__buttons {
+    justify-content: flex-start;
+  }
+}
+
 @media screen and (min-width: 750px) {
   .spray-hero__content {
     margin: 0;

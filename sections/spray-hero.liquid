@@ -23,10 +23,22 @@
       {%- if section.settings.subheading != blank -%}
         <p class="spray-hero__subheading">{{ section.settings.subheading }}</p>
       {%- endif -%}
-      {%- if section.settings.button_label != blank -%}
-        <a href="{{ section.settings.button_link | default: '#' }}" class="button spray-hero__button">
-          {{- section.settings.button_label -}}
-        </a>
+      {%- if section.settings.button_label != blank or section.settings.button_label_2 != blank -%}
+        <div class="spray-hero__buttons">
+          {%- if section.settings.button_label != blank -%}
+            <a href="{{ section.settings.button_link | default: '#' }}" class="button spray-hero__button">
+              {{- section.settings.button_label -}}
+            </a>
+          {%- endif -%}
+          {%- if section.settings.button_label_2 != blank -%}
+            <a
+              href="{{ section.settings.button_link_2 | default: '#' }}"
+              class="button button--secondary spray-hero__button"
+            >
+              {{- section.settings.button_label_2 -}}
+            </a>
+          {%- endif -%}
+        </div>
       {%- endif -%}
     </div>
 
@@ -93,6 +105,16 @@
       "type": "url",
       "id": "button_link",
       "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Secondary button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Secondary button link"
     },
     {
       "type": "header",
