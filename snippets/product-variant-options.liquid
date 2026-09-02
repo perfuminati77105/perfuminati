@@ -59,6 +59,12 @@
     </span>
   {%- endcapture -%}
 
+  {%- capture sold_out_badge -%}
+    {%- unless value.available -%}
+      <span class="variant-option__sold-out-badge" aria-hidden="true">Sold out</span>
+    {%- endunless -%}
+  {%- endcapture -%}
+
   {% assign escaped_value = value | escape %}
 
   {%- if picker_type == 'swatch' -%}
@@ -98,6 +104,7 @@
     <label for="{{ input_id }}">
       {{ value -}}
       {{ label_unavailable }}
+      {{ sold_out_badge }}
     </label>
   {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
     <option

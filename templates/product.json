@@ -27,14 +27,6 @@
           "type": "price",
           "settings": {}
         },
-        "inventory": {
-          "type": "inventory",
-          "settings": {
-            "text_style": "body",
-            "inventory_threshold": 5,
-            "show_inventory_quantity": true
-          }
-        },
         "batch_code_help": {
           "type": "help_modal",
           "settings": {
@@ -110,11 +102,10 @@
       "block_order": [
         "vendor",
         "title",
-        "price",
-        "inventory",
         "batch_code_help",
         "variant_picker",
         "quantity_selector",
+        "price",
         "buy_buttons",
         "pairs_well_with",
         "description",

@@ -1,46 +1,15 @@
 {
   "sections": {
     "hero": {
-      "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "A Signature Scent Awaits",
-            "heading_size": "hxl"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "Discover Perfumate's collection of rare, long-lasting fragrances, crafted for those who leave an impression.",
-            "text_style": "body"
-          }
-        },
-        "buttons": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop All Fragrances",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": false,
-            "button_label_2": "Explore Our Story",
-            "button_link_2": "",
-            "button_style_secondary_2": true
-          }
-        }
-      },
-      "block_order": ["heading", "text", "buttons"],
+      "type": "spray-hero",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "middle-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
         "color_scheme": "scheme-4",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": true,
-        "show_text_below": true
+        "heading": "A Signature Scent Awaits",
+        "subheading": "Discover Perfumate's collection of rare, long-lasting fragrances, crafted for those who leave an impression.",
+        "button_label": "Shop All Fragrances",
+        "button_link": "shopify://collections/all",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "fragrance_of_the_week": {
