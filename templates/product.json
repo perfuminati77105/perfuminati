@@ -53,16 +53,6 @@
             "show_gift_card_recipient": true
           }
         },
-        "pairs_well_with": {
-          "type": "manual_complementary",
-          "settings": {
-            "heading": "Pairs Well With",
-            "product_1": "amber-leather-inspired-by-ombre-leather",
-            "product_2": "starry-times",
-            "product_3": "ambush",
-            "product_4": "oriental-spicy"
-          }
-        },
         "description": {
           "type": "description",
           "settings": {}
@@ -107,7 +97,6 @@
         "quantity_selector",
         "price",
         "buy_buttons",
-        "pairs_well_with",
         "description",
         "fragrance_notes",
         "shipping",

@@ -11,7 +11,8 @@
   "current": "Dawn",
   "presets": {
     "Dawn": {
-      "logo_width": 90,
+      "logo": "shopify://shop_images/Perfuminati_-_Name_White.png",
+      "logo_width": 140,
       "color_schemes": {
         "scheme-1": {
           "settings": {
