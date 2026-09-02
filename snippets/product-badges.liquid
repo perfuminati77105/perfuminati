@@ -29,7 +29,9 @@
 {% endcomment %}
 {%- liquid
   assign badge_id = id_prefix | default: 'Badge'
-  if section_id
+  if context == 'pdp' and section_id
+    assign badge_id = badge_id | append: '-' | append: section_id
+  elsif section_id
     assign badge_id = badge_id | append: '-' | append: section_id | append: '-' | append: product.id
   else
     assign badge_id = badge_id | append: '-' | append: product.id
@@ -86,7 +88,7 @@
     endif
   endunless
 -%}
-{%- if is_sold_out or show_latest or show_best_seller or show_trending or show_sale -%}
+{%- if context == 'pdp' or is_sold_out or show_latest or show_best_seller or show_trending or show_sale -%}
   <div class="product-badges{% if context == 'pdp' %} product-badges--pdp{% endif %}" id="{{ badge_id }}">
     {%- if is_sold_out -%}
       <span class="badge product-badge product-badge--sold-out color-{{ settings.sold_out_badge_color_scheme }}">

@@ -42,6 +42,9 @@
   endif
 -%}
 
+<script type="application/json" id="VariantMediaData-{{ section.id }}">
+  {{ product.images | json }}
+</script>
 <media-gallery
   id="MediaGallery-{{ section.id }}"
   role="region"
