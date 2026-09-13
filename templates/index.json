@@ -21,7 +21,7 @@
         "button_label_2": "Explore Collection",
         "button_link_2": "shopify://collections/aura-collection",
         "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 24
       }
     },
     "shop_by_category": {
