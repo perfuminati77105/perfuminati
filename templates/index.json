@@ -58,7 +58,7 @@
       },
       "block_order": ["eyebrow", "title", "price", "variant_picker", "buy_buttons"],
       "settings": {
-        "product": "starry-times",
+        "product": "ambush",
         "color_scheme": "scheme-2",
         "secondary_background": false,
         "media_size": "large",
@@ -249,8 +249,8 @@
         "image_width": "third",
         "image_ratio": "adapt",
         "column_alignment": "center",
-        "background_style": "none",
-        "color_scheme": "scheme-1",
+        "background_style": "primary",
+        "color_scheme": "scheme-2",
         "columns_desktop": 4,
         "columns_mobile": "1",
         "swipe_on_mobile": false,
@@ -354,7 +354,7 @@
         "product-2": {
           "type": "product",
           "settings": {
-            "product": "amber-leather-inspired-by-ombre-leather",
+            "product": "oriental-spicy",
             "second_image": false
           }
         }
@@ -407,6 +407,7 @@
       },
       "block_order": ["caption", "heading", "text", "button"],
       "settings": {
+        "image": "shopify://shop_images/20260608_183213.png",
         "height": "medium",
         "desktop_image_width": "medium",
         "layout": "image_first",
@@ -451,47 +452,54 @@
         "padding_bottom": 48
       }
     },
-    "sale_offers": {
-      "type": "featured-collection",
+    "faq": {
+      "type": "collapsible-content",
+      "blocks": {
+        "row-1": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What is Extrait de Parfum?",
+            "icon": "perfume",
+            "row_content": "<p>Extrait de Parfum is our most concentrated fragrance formulation, built at 30-40% oil concentration for richer depth and longer-lasting scent than a typical Eau de Parfum.</p>"
+          }
+        },
+        "row-2": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How long does shipping take?",
+            "icon": "truck",
+            "row_content": "<p>Orders are carefully packaged and shipped within 1-2 business days. Delivery times vary by destination.</p>"
+          }
+        },
+        "row-3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What is your return policy?",
+            "icon": "return",
+            "row_content": "<p>Not the right scent? Unopened items can be returned within 30 days of delivery for a full refund.</p>"
+          }
+        },
+        "row-4": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How do I read my batch code?",
+            "icon": "bottle",
+            "row_content": "<p>Locate the small batch code printed on the base of the bottle. The first two letters indicate the production month; the digits that follow indicate the year.</p>"
+          }
+        }
+      },
+      "block_order": ["row-1", "row-2", "row-3", "row-4"],
       "settings": {
-        "title": "Sale",
+        "caption": "",
+        "heading": "Frequently Asked Questions",
         "heading_size": "h1",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "sale",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-5",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "outline",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": true,
-        "image_ratio": "portrait",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "standard",
-        "columns_mobile": "2",
-        "padding_top": 48,
-        "padding_bottom": 48
-      }
-    },
-    "fragrance_journal": {
-      "type": "featured-blog",
-      "settings": {
-        "blog": "news",
-        "post_limit": 3,
-        "heading": "Fragrance Journal",
-        "heading_size": "h1",
-        "columns_desktop": 3,
-        "show_view_all": true,
-        "show_image": true,
-        "show_date": true,
-        "show_author": false,
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "scheme-1",
         "color_scheme": "scheme-1",
+        "open_first_collapsible_row": true,
+        "image_ratio": "adapt",
+        "desktop_layout": "left",
         "padding_top": 48,
         "padding_bottom": 48
       }
@@ -539,8 +547,7 @@
     "trust_benefits",
     "discovery_collage",
     "brand_story",
-    "sale_offers",
-    "fragrance_journal",
+    "faq",
     "newsletter"
   ]
 }

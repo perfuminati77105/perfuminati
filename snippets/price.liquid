@@ -35,12 +35,16 @@
     assign money_price_max = price_max | money_with_currency
   endif
 
+  assign is_starting_from_price = false
+
   if target == product and product.price_varies
     assign money_price = 'products.product.price.from_price_html' | t: price: money_price
+    assign is_starting_from_price = true
   endif
 
   if show_starting_at and use_variant and product.selected_variant == null and product.price_varies
     assign money_price = money_price_min | prepend: 'Starting from '
+    assign is_starting_from_price = true
   endif
 -%}
 
@@ -95,7 +99,7 @@
         {%- endif -%}
       </div>
       <div class="price__sale">
-        {%- unless product.price_varies == false and product.compare_at_price_varies %}
+        {%- unless is_starting_from_price or product.price_varies == false and product.compare_at_price_varies %}
           <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
           <span>
             <s class="price-item price-item--regular">
