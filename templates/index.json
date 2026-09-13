@@ -58,7 +58,13 @@
           }
         }
       },
-      "block_order": ["for-him", "for-her", "unisex", "new-arrivals", "bestsellers"],
+      "block_order": [
+        "for-him",
+        "for-her",
+        "unisex",
+        "new-arrivals",
+        "bestsellers"
+      ],
       "settings": {
         "title": "Shop by Category",
         "heading_size": "h1",
@@ -106,7 +112,12 @@
           }
         }
       },
-      "block_order": ["caption", "heading", "text", "button"],
+      "block_order": [
+        "caption",
+        "heading",
+        "text",
+        "button"
+      ],
       "settings": {
         "image": "shopify://shop_images/20260608_182632.png",
         "height": "large",
@@ -158,7 +169,13 @@
           }
         }
       },
-      "block_order": ["eyebrow", "title", "price", "variant_picker", "buy_buttons"],
+      "block_order": [
+        "eyebrow",
+        "title",
+        "price",
+        "variant_picker",
+        "buy_buttons"
+      ],
       "settings": {
         "product": "ambush",
         "color_scheme": "scheme-2",
@@ -182,9 +199,9 @@
         "title": "Trending Now",
         "heading_size": "h1",
         "description": "",
-        "show_description": false,
+        "show_description": true,
         "description_style": "body",
-        "columns_desktop": 4,
+        "columns_desktop": 3,
         "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
@@ -196,7 +213,7 @@
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "standard",
-        "columns_mobile": "2",
+        "columns_mobile": "1",
         "swipe_on_mobile": true,
         "padding_top": 48,
         "padding_bottom": 48
@@ -224,7 +241,7 @@
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "standard",
-        "columns_mobile": "2",
+        "columns_mobile": "1",
         "swipe_on_mobile": true,
         "padding_top": 48,
         "padding_bottom": 48
@@ -252,7 +269,7 @@
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "standard",
-        "columns_mobile": "2",
+        "columns_mobile": "1",
         "swipe_on_mobile": true,
         "padding_top": 48,
         "padding_bottom": 48
@@ -298,7 +315,14 @@
           }
         }
       },
-      "block_order": ["floral", "woody", "fruity", "citrus", "aromatic-fresh", "spicy"],
+      "block_order": [
+        "floral",
+        "woody",
+        "fruity",
+        "citrus",
+        "aromatic-fresh",
+        "spicy"
+      ],
       "settings": {
         "title": "Shop by Fragrance Family",
         "heading_size": "h1",
@@ -328,7 +352,10 @@
           }
         }
       },
-      "block_order": ["collection-1", "collection-2"],
+      "block_order": [
+        "collection-1",
+        "collection-2"
+      ],
       "settings": {
         "title": "Signature Collections",
         "heading_size": "h1",
@@ -364,7 +391,11 @@
           }
         }
       },
-      "block_order": ["for-him", "for-her", "unisex"],
+      "block_order": [
+        "for-him",
+        "for-her",
+        "unisex"
+      ],
       "settings": {
         "title": "Find Your Signature Scent",
         "heading_size": "h1",
@@ -422,7 +453,12 @@
           }
         }
       },
-      "block_order": ["benefit-1", "benefit-2", "benefit-3", "benefit-4"],
+      "block_order": [
+        "benefit-1",
+        "benefit-2",
+        "benefit-3",
+        "benefit-4"
+      ],
       "settings": {
         "title": "Why Perfuminati",
         "heading_size": "h1",
@@ -464,7 +500,11 @@
           }
         }
       },
-      "block_order": ["product-1", "collection-1", "product-2"],
+      "block_order": [
+        "product-1",
+        "collection-1",
+        "product-2"
+      ],
       "disabled": true,
       "settings": {
         "heading": "Discover Your Signature Scent",
@@ -511,7 +551,12 @@
           }
         }
       },
-      "block_order": ["caption", "heading", "text", "button"],
+      "block_order": [
+        "caption",
+        "heading",
+        "text",
+        "button"
+      ],
       "disabled": true,
       "settings": {
         "image": "shopify://shop_images/20260608_183213.png",
@@ -569,7 +614,12 @@
           }
         }
       },
-      "block_order": ["row-1", "row-2", "row-3", "row-4"],
+      "block_order": [
+        "row-1",
+        "row-2",
+        "row-3",
+        "row-4"
+      ],
       "settings": {
         "caption": "",
         "heading": "Frequently Asked Questions",
@@ -606,7 +656,11 @@
           "settings": {}
         }
       },
-      "block_order": ["heading", "paragraph", "email_form"],
+      "block_order": [
+        "heading",
+        "paragraph",
+        "email_form"
+      ],
       "settings": {
         "color_scheme": "scheme-3",
         "full_width": true,
