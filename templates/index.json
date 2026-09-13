@@ -563,12 +563,12 @@
         "heading": "Frequently Asked Questions",
         "heading_size": "h1",
         "heading_alignment": "center",
-        "layout": "none",
+        "layout": "row",
         "container_color_scheme": "scheme-1",
         "color_scheme": "scheme-1",
         "open_first_collapsible_row": true,
         "image_ratio": "adapt",
-        "desktop_layout": "left",
+        "desktop_layout": "image_first",
         "padding_top": 48,
         "padding_bottom": 48
       }
