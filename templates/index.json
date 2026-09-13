@@ -10,7 +10,7 @@
 {
   "sections": {
     "hero": {
-      "type": "spray-hero",
+      "type": "hero-banner",
       "settings": {
         "color_scheme": "scheme-1",
         "eyebrow": "Extrait de Parfum",
