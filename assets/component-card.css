@@ -315,6 +315,15 @@
   margin-bottom: 0;
 }
 
+@media screen and (max-width: 749px) {
+  .card__heading a {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
 .card--horizontal .card__heading,
 .card--horizontal .price__container .price-item,
 .card--horizontal__quick-add {
