@@ -258,6 +258,83 @@
         "padding_bottom": 48
       }
     },
+    "find_your_scent": {
+      "type": "collection-list",
+      "blocks": {
+        "for-him": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "for-him"
+          }
+        },
+        "for-her": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "for-her"
+          }
+        },
+        "unisex": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "unisex-1"
+          }
+        }
+      },
+      "block_order": ["for-him", "for-her", "unisex"],
+      "settings": {
+        "title": "Find Your Signature Scent",
+        "heading_size": "h1",
+        "image_ratio": "portrait",
+        "columns_desktop": 3,
+        "color_scheme": "scheme-2",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "trust_benefits": {
+      "type": "multicolumn",
+      "blocks": {
+        "benefit-1": {
+          "type": "column",
+          "settings": {
+            "title": "Secure Checkout",
+            "text": "<p>Every order is processed through Shopify's secure, encrypted checkout.</p>"
+          }
+        },
+        "benefit-2": {
+          "type": "column",
+          "settings": {
+            "title": "Fast Dispatch",
+            "text": "<p>Orders are carefully packaged and shipped within 1-2 business days.</p>"
+          }
+        },
+        "benefit-3": {
+          "type": "column",
+          "settings": {
+            "title": "Easy Returns",
+            "text": "<p>Unopened items can be returned within 30 days of delivery for a full refund.</p>"
+          }
+        }
+      },
+      "block_order": ["benefit-1", "benefit-2", "benefit-3"],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "third",
+        "image_ratio": "adapt",
+        "column_alignment": "center",
+        "background_style": "none",
+        "color_scheme": "scheme-1",
+        "columns_desktop": 3,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
     "discovery_collage": {
       "type": "collage",
       "blocks": {
@@ -412,7 +489,9 @@
     "best_sellers",
     "shop_by_family",
     "shop_by_collection",
+    "find_your_scent",
     "why_perfuminati",
+    "trust_benefits",
     "discovery_collage",
     "brand_story",
     "newsletter"
