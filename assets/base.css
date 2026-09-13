@@ -917,6 +917,7 @@ summary::-webkit-details-marker {
   max-width: calc(50% - var(--grid-mobile-horizontal-spacing) / 2);
   flex-grow: 1;
   flex-shrink: 0;
+  min-width: 0;
 }
 
 @media screen and (min-width: 750px) {
