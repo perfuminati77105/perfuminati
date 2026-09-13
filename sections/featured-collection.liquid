@@ -179,12 +179,9 @@
               {{- 'icon-caret.svg' | inline_asset_content -}}
             </span>
           </button>
-          <div class="slider-counter caption">
-            <span class="slider-counter--current">1</span>
-            <span aria-hidden="true"> / </span>
-            <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
-            <span class="slider-counter--total">{{ products_to_display }}</span>
-          </div>
+          <div class="slider-dots" role="tablist" aria-label="{{ 'general.slider.name' | t }}"></div>
+          <span class="visually-hidden slider-counter--current">1</span>
+          <span class="visually-hidden slider-counter--total">{{ products_to_display }}</span>
           <button
             type="button"
             class="slider-button slider-button--next"

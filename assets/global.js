@@ -735,6 +735,7 @@ class SliderComponent extends HTMLElement {
     this.pageTotalElement = this.querySelector('.slider-counter--total');
     this.prevButton = this.querySelector('button[name="previous"]');
     this.nextButton = this.querySelector('button[name="next"]');
+    this.dotsWrapper = this.querySelector('.slider-dots');
 
     if (!this.slider || !this.nextButton) return;
 
@@ -755,7 +756,38 @@ class SliderComponent extends HTMLElement {
       (this.slider.clientWidth - this.sliderItemsToShow[0].offsetLeft) / this.sliderItemOffset
     );
     this.totalPages = this.sliderItemsToShow.length - this.slidesPerPage + 1;
+    this.renderDots();
     this.update();
+  }
+
+  renderDots() {
+    if (!this.dotsWrapper) return;
+    if (this.dotsWrapper.dataset.renderedFor === String(this.totalPages)) return;
+
+    this.dotsWrapper.dataset.renderedFor = String(this.totalPages);
+    this.dotsWrapper.innerHTML = '';
+    this.dotsWrapper.hidden = this.totalPages <= 1;
+
+    for (let i = 1; i <= this.totalPages; i++) {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'slider-dot';
+      dot.setAttribute('aria-label', `${i}`);
+      dot.addEventListener('click', () => {
+        this.setSlidePosition(this.sliderItemsToShow[i - 1].offsetLeft);
+      });
+      this.dotsWrapper.appendChild(dot);
+    }
+
+    this.updateDots();
+  }
+
+  updateDots() {
+    if (!this.dotsWrapper) return;
+    const dots = this.dotsWrapper.querySelectorAll('.slider-dot');
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('slider-dot--active', index === (this.currentPage || 1) - 1);
+    });
   }
 
   resetPages() {
@@ -775,6 +807,8 @@ class SliderComponent extends HTMLElement {
       this.currentPageElement.textContent = this.currentPage;
       this.pageTotalElement.textContent = this.totalPages;
     }
+
+    this.updateDots();
 
     if (this.currentPage != previousPage) {
       this.dispatchEvent(
