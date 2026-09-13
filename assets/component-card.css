@@ -3,6 +3,12 @@
   height: 100%;
   position: relative;
   text-decoration: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-wrapper > .quick-add {
+  margin-top: auto;
 }
 
 .card {
