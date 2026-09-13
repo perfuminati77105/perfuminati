@@ -14,7 +14,16 @@
   }
 {%- endstyle -%}
 
-<div class="spray-hero color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+<div class="spray-hero color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding{% if section.settings.video != blank %} spray-hero--video{% endif %}">
+  {%- if section.settings.video != blank -%}
+    <div class="spray-hero__video-wrap" aria-hidden="true">
+      {{
+        section.settings.video
+        | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, image_size: '1920x'
+      }}
+      <div class="spray-hero__video-overlay"></div>
+    </div>
+  {%- endif -%}
   <div class="spray-hero__inner page-width">
     <div class="spray-hero__content">
       {%- if section.settings.heading != blank -%}
@@ -42,7 +51,10 @@
       {%- endif -%}
     </div>
 
-    <div class="spray-hero__visual" aria-hidden="true">
+    <div
+      class="spray-hero__visual{% if section.settings.video != blank %} spray-hero__visual--hidden{% endif %}"
+      aria-hidden="true"
+    >
       <svg
         class="spray-hero__bottle"
         viewBox="0 0 160 260"
@@ -82,6 +94,12 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-4"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Background video (optional)",
+      "info": "When set, this plays as a full-bleed background video instead of the illustrated bottle. Muted, autoplay, loops."
     },
     {
       "type": "text",
