@@ -26,6 +26,9 @@
   {%- endif -%}
   <div class="spray-hero__inner page-width">
     <div class="spray-hero__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="spray-hero__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
       {%- if section.settings.heading != blank -%}
         <h1 class="spray-hero__heading">{{ section.settings.heading }}</h1>
       {%- endif -%}
@@ -51,36 +54,48 @@
       {%- endif -%}
     </div>
 
-    <div
-      class="spray-hero__visual{% if section.settings.video != blank %} spray-hero__visual--hidden{% endif %}"
-      aria-hidden="true"
-    >
-      <svg
-        class="spray-hero__bottle"
-        viewBox="0 0 160 260"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <ellipse class="spray-hero__glow" cx="80" cy="235" rx="46" ry="10" />
-        <g class="spray-hero__spray">
-          <circle cx="150" cy="30" r="3.5" />
-          <circle cx="160" cy="26" r="2.5" />
-          <circle cx="168" cy="34" r="3" />
-          <circle cx="155" cy="20" r="2" />
-          <circle cx="163" cy="40" r="2.5" />
-          <circle cx="172" cy="24" r="2" />
-          <circle cx="178" cy="30" r="1.8" />
-          <circle cx="182" cy="22" r="1.5" />
-        </g>
-        <circle class="spray-hero__nozzle" cx="140" cy="30" r="5" fill="currentColor" />
-        <rect x="102" y="26" width="40" height="8" rx="4" fill="currentColor" />
-        <rect x="76" y="40" width="8" height="10" fill="currentColor" opacity="0.85" />
-        <rect x="58" y="10" width="44" height="34" rx="6" fill="currentColor" />
-        <rect x="72" y="40" width="16" height="20" fill="currentColor" />
-        <path d="M60 60 L100 60 L118 88 L42 88 Z" fill="currentColor" />
-        <rect x="30" y="88" width="100" height="140" rx="16" fill="currentColor" opacity="0.9" />
-      </svg>
-    </div>
+    {%- if section.settings.video == blank -%}
+      <div class="spray-hero__visual{% if section.settings.image != blank %} spray-hero__visual--photo{% endif %}" aria-hidden="true">
+        {%- if section.settings.image != blank -%}
+          {{
+            section.settings.image
+            | image_url: width: 1200
+            | image_tag:
+              loading: 'eager',
+              fetchpriority: 'high',
+              sizes: '(min-width: 750px) 40vw, 80vw',
+              widths: '400, 600, 800, 1000, 1200',
+              class: 'spray-hero__image'
+          }}
+        {%- else -%}
+          <svg
+            class="spray-hero__bottle"
+            viewBox="0 0 160 260"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <ellipse class="spray-hero__glow" cx="80" cy="235" rx="46" ry="10" />
+            <g class="spray-hero__spray">
+              <circle cx="150" cy="30" r="3.5" />
+              <circle cx="160" cy="26" r="2.5" />
+              <circle cx="168" cy="34" r="3" />
+              <circle cx="155" cy="20" r="2" />
+              <circle cx="163" cy="40" r="2.5" />
+              <circle cx="172" cy="24" r="2" />
+              <circle cx="178" cy="30" r="1.8" />
+              <circle cx="182" cy="22" r="1.5" />
+            </g>
+            <circle class="spray-hero__nozzle" cx="140" cy="30" r="5" fill="currentColor" />
+            <rect x="102" y="26" width="40" height="8" rx="4" fill="currentColor" />
+            <rect x="76" y="40" width="8" height="10" fill="currentColor" opacity="0.85" />
+            <rect x="58" y="10" width="44" height="34" rx="6" fill="currentColor" />
+            <rect x="72" y="40" width="16" height="20" fill="currentColor" />
+            <path d="M60 60 L100 60 L118 88 L42 88 Z" fill="currentColor" />
+            <rect x="30" y="88" width="100" height="140" rx="16" fill="currentColor" opacity="0.9" />
+          </svg>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
   </div>
 </div>
 
@@ -99,7 +114,19 @@
       "type": "video",
       "id": "video",
       "label": "Background video (optional)",
-      "info": "When set, this plays as a full-bleed background video instead of the illustrated bottle. Muted, autoplay, loops."
+      "info": "When set, this plays as a full-bleed background video instead of the image or illustrated bottle."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image (optional)",
+      "info": "Shown beside the heading when no background video is set. Falls back to the illustrated bottle if left blank."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "info": "Small label shown above the heading"
     },
     {
       "type": "text",

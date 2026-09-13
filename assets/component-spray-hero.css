@@ -80,6 +80,15 @@
   max-width: 42rem;
 }
 
+.spray-hero__eyebrow {
+  margin: 0 0 1.2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.18rem;
+  text-transform: uppercase;
+  color: #c7a76c;
+}
+
 .spray-hero__heading {
   margin: 0 0 1.5rem;
   font-size: 3.4rem;
@@ -140,6 +149,28 @@
 
 .spray-hero__visual--hidden {
   display: none;
+}
+
+.spray-hero__visual--photo {
+  width: 20rem;
+  height: 24rem;
+  animation: none;
+  border-radius: var(--corner-radius-buttons, 6px);
+  overflow: hidden;
+}
+
+@media screen and (min-width: 750px) {
+  .spray-hero__visual--photo {
+    width: 30rem;
+    height: 36rem;
+  }
+}
+
+.spray-hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
 }
 
 .spray-hero__bottle {
