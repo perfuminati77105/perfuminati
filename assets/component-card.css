@@ -315,13 +315,11 @@
   margin-bottom: 0;
 }
 
-@media screen and (max-width: 749px) {
-  .card__heading a {
-    display: block;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
+.card__heading a {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .card--horizontal .card__heading,
