@@ -150,6 +150,29 @@
   padding: 2.5rem;
 }
 
+.multicolumn-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.4rem;
+  height: 4.4rem;
+  margin-bottom: 1.6rem;
+  border-radius: 50%;
+  background: rgba(199, 167, 108, 0.14);
+  color: #c7a76c;
+}
+
+.center .multicolumn-card__icon {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.multicolumn-card__icon .icon,
+.multicolumn-card__icon svg {
+  width: 2rem;
+  height: 2rem;
+}
+
 .background-none .multicolumn-card__info {
   padding-top: 0;
   padding-left: 0;

@@ -119,6 +119,11 @@
                 </div>
               {%- endif -%}
               <div class="multicolumn-card__info">
+                {%- if block.settings.icon != blank and block.settings.icon != 'none' -%}
+                  <div class="multicolumn-card__icon">
+                    {%- render 'icon-accordion', icon: block.settings.icon -%}
+                  </div>
+                {%- endif -%}
                 {%- if block.settings.title != blank -%}
                   <h3 class="inline-richtext">{{ block.settings.title }}</h3>
                 {%- endif -%}
@@ -408,6 +413,25 @@
           "type": "image_picker",
           "id": "image",
           "label": "t:sections.multicolumn.blocks.column.settings.image.label"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon (shown above the title when no image is set)",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "truck", "label": "Truck" },
+            { "value": "lock", "label": "Lock" },
+            { "value": "perfume", "label": "Perfume bottle" },
+            { "value": "star", "label": "Star" },
+            { "value": "box", "label": "Box" },
+            { "value": "price_tag", "label": "Price tag" },
+            { "value": "return", "label": "Return" },
+            { "value": "leaf", "label": "Leaf" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "check_mark", "label": "Check mark" }
+          ],
+          "default": "none"
         },
         {
           "type": "inline_richtext",

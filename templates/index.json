@@ -378,47 +378,51 @@
         "padding_bottom": 48
       }
     },
-    "why_perfuminati": {
+    "trust_benefits": {
       "type": "multicolumn",
       "blocks": {
-        "fact-1": {
+        "benefit-1": {
           "type": "column",
           "settings": {
-            "title": "100+ Fragrances",
-            "text": "<p>A wide-ranging oil-based attar collection, so there's a scent for every taste and occasion.</p>",
+            "icon": "truck",
+            "title": "Free Shipping",
+            "text": "<p>Complimentary shipping on every order, no minimum required.</p>",
             "link_label": "",
             "link": ""
           }
         },
-        "fact-2": {
+        "benefit-2": {
           "type": "column",
           "settings": {
-            "title": "Extrait de Parfum",
-            "text": "<p>Our most concentrated formulation, built for depth and longevity on the skin.</p>",
+            "icon": "lock",
+            "title": "Secure Payments",
+            "text": "<p>Every transaction is encrypted and processed through Shopify's secure checkout.</p>",
             "link_label": "",
             "link": ""
           }
         },
-        "fact-3": {
+        "benefit-3": {
           "type": "column",
           "settings": {
-            "title": "30-40% Oil Concentration",
-            "text": "<p>A higher oil concentration than typical Eau de Parfum, for a richer, longer-lasting scent.</p>",
+            "icon": "perfume",
+            "title": "Premium Quality",
+            "text": "<p>Extrait de Parfum fragrances at 30-40% oil concentration for lasting depth.</p>",
             "link_label": "",
             "link": ""
           }
         },
-        "fact-4": {
+        "benefit-4": {
           "type": "column",
           "settings": {
-            "title": "Accessible Luxury",
-            "text": "<p>Quality fragrance oils without the department-store markup.</p>",
+            "icon": "price_tag",
+            "title": "Perfect for Gifting",
+            "text": "<p>Elegant packaging that makes every bottle ready to give.</p>",
             "link_label": "",
             "link": ""
           }
         }
       },
-      "block_order": ["fact-1", "fact-2", "fact-3", "fact-4"],
+      "block_order": ["benefit-1", "benefit-2", "benefit-3", "benefit-4"],
       "settings": {
         "title": "Why Perfuminati",
         "heading_size": "h1",
@@ -434,64 +438,6 @@
         "swipe_on_mobile": false,
         "padding_top": 48,
         "padding_bottom": 48
-      }
-    },
-    "trust_benefits": {
-      "type": "multicolumn",
-      "blocks": {
-        "benefit-1": {
-          "type": "column",
-          "settings": {
-            "title": "Free Shipping",
-            "text": "<p>Complimentary shipping on every order, no minimum required.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "benefit-2": {
-          "type": "column",
-          "settings": {
-            "title": "Secure Payments",
-            "text": "<p>Every transaction is encrypted and processed through Shopify's secure checkout.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "benefit-3": {
-          "type": "column",
-          "settings": {
-            "title": "Premium Quality",
-            "text": "<p>Extrait de Parfum fragrances at 30-40% oil concentration for lasting depth.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "benefit-4": {
-          "type": "column",
-          "settings": {
-            "title": "Perfect for Gifting",
-            "text": "<p>Elegant packaging that makes every bottle ready to give.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": ["benefit-1", "benefit-2", "benefit-3", "benefit-4"],
-      "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "third",
-        "image_ratio": "adapt",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 4,
-        "column_alignment": "center",
-        "background_style": "none",
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 32,
-        "padding_bottom": 32
       }
     },
     "discovery_collage": {
@@ -680,7 +626,6 @@
     "shop_by_family",
     "shop_by_collection",
     "find_your_scent",
-    "why_perfuminati",
     "trust_benefits",
     "discovery_collage",
     "brand_story",
