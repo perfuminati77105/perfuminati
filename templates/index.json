@@ -83,7 +83,7 @@
     "trending_collection": {
       "type": "featured-collection",
       "settings": {
-        "collection": "trending",
+        "collection": "ishas-favourites",
         "products_to_show": 6,
         "title": "Trending Now",
         "heading_size": "h1",
