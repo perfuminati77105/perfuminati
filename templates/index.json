@@ -252,7 +252,7 @@
         "columns_desktop": 2,
         "color_scheme": "scheme-1",
         "show_view_all": false,
-        "columns_mobile": "1",
+        "columns_mobile": "2",
         "swipe_on_mobile": true,
         "padding_top": 48,
         "padding_bottom": 48
@@ -443,6 +443,7 @@
         "collection-1",
         "product-2"
       ],
+      "disabled": true,
       "settings": {
         "heading": "Discover Your Signature Scent",
         "heading_size": "h1",
@@ -494,6 +495,7 @@
         "text",
         "button"
       ],
+      "disabled": true,
       "settings": {
         "image": "shopify://shop_images/20260608_183213.png",
         "height": "medium",
