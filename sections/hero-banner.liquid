@@ -14,7 +14,7 @@
   }
 {%- endstyle -%}
 
-<div class="hero-banner color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding{% if section.settings.image != blank or section.settings.video != blank %} hero-banner--media{% endif %}">
+<div class="hero-banner color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding{% if section.settings.desktop_image != blank or section.settings.mobile_image != blank or section.settings.video != blank %} hero-banner--media{% endif %}">
   {%- if section.settings.video != blank -%}
     <div class="hero-banner__media-wrap" aria-hidden="true">
       {{
