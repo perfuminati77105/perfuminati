@@ -593,7 +593,7 @@
           "settings": {
             "heading": "How long does shipping take?",
             "icon": "truck",
-            "row_content": "<p>Orders are carefully packaged and shipped within 1-2 business days. Delivery times vary by destination.</p>",
+            "row_content": "<p>Orders are typically processed within 7–15 days, depending on stock availability.</p>",
             "page": ""
           }
         },
@@ -602,7 +602,7 @@
           "settings": {
             "heading": "What is your return policy?",
             "icon": "return",
-            "row_content": "<p>Not the right scent? Unopened items can be returned within 30 days of delivery for a full refund.</p>",
+            "row_content": "<p>Due to the personal and hygienic nature of perfumes, we do not accept returns  or exchanges. If your order arrives broken or damaged, please contact us at i<a href=\"mailto:info@perfuminati.com\">nfo@perfuminati.com</a>  within 24–48 hours of delivery. A video recording of the unboxing is required  to support your claim.</p>",
             "page": ""
           }
         },
