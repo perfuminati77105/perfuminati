@@ -13,6 +13,8 @@
       "type": "hero-banner",
       "settings": {
         "color_scheme": "scheme-1",
+        "desktop_image": "shopify://shop_images/3da35bd8-655f-4649-ae51-b5e81b908df8.png",
+        "mobile_image": "shopify://shop_images/1b0de977-4bb3-4ec3-b49d-2ed04d3fc179.png",
         "eyebrow": "Extrait de Parfum",
         "heading": "Luxury, Made Personal.",
         "subheading": "Extrait de Parfum fragrances at 30-40% oil concentration, crafted for those who leave an impression.",
