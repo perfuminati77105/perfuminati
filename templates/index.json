@@ -418,8 +418,8 @@
           "type": "column",
           "settings": {
             "icon": "truck",
-            "title": "Free Shipping",
-            "text": "<p>Complimentary shipping on every order, no minimum required.</p>",
+            "title": "Shipping",
+            "text": "<p>To keep our pricing fair, shipping charges are calculated separately at checkout.<br/></p>",
             "link_label": "",
             "link": ""
           }
