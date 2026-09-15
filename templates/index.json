@@ -605,22 +605,12 @@
             "row_content": "<p>Due to the personal and hygienic nature of perfumes, we do not accept returns  or exchanges. If your order arrives broken or damaged, please contact us at i<a href=\"mailto:info@perfuminati.com\">nfo@perfuminati.com</a>  within 24–48 hours of delivery. A video recording of the unboxing is required  to support your claim.</p>",
             "page": ""
           }
-        },
-        "row-4": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "How do I read my batch code?",
-            "icon": "bottle",
-            "row_content": "<p>Locate the small batch code printed on the base of the bottle. The first two letters indicate the production month; the digits that follow indicate the year.</p>",
-            "page": ""
-          }
         }
       },
       "block_order": [
         "row-1",
         "row-2",
-        "row-3",
-        "row-4"
+        "row-3"
       ],
       "settings": {
         "caption": "",
