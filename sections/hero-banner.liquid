@@ -12,143 +12,426 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  /* ================================
+     Responsive Hero Images
+  ================================= */
+
+  #HeroBanner-{{ section.id }} {
+    position: relative;
+    overflow: hidden;
+    min-height: 82vh;
+  }
+
+  #HeroBanner-{{ section.id }} .hero-banner__media-wrap {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  #HeroBanner-{{ section.id }} .hero-banner__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Desktop image */
+  #HeroBanner-{{ section.id }} .hero-banner__image--desktop {
+    display: block;
+    object-position: center center;
+  }
+
+  /* Mobile image hidden on desktop */
+  #HeroBanner-{{ section.id }} .hero-banner__image--mobile {
+    display: none;
+  }
+
+  /* Keep text above image */
+  #HeroBanner-{{ section.id }} .hero-banner__inner {
+    position: relative;
+    z-index: 3;
+    min-height: 82vh;
+    display: flex;
+    align-items: center;
+  }
+
+  #HeroBanner-{{ section.id }} .hero-banner__content {
+    max-width: 520px;
+    position: relative;
+    z-index: 4;
+  }
+
+  /* Subtle readability overlay */
+  #HeroBanner-{{ section.id }} .hero-banner__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.12) 0%,
+      rgba(0, 0, 0, 0.04) 35%,
+      rgba(0, 0, 0, 0) 65%
+    );
+  }
+
+  /* =================================
+     MOBILE
+  ================================== */
+
+  @media screen and (max-width: 749px) {
+
+    #HeroBanner-{{ section.id }} {
+      min-height: 0;
+    }
+
+    #HeroBanner-{{ section.id }} .hero-banner__media-wrap {
+      position: relative;
+      height: 100%;
+      min-height: 720px;
+    }
+
+    #HeroBanner-{{ section.id }} .hero-banner__image--desktop {
+      display: none;
+    }
+
+    #HeroBanner-{{ section.id }} .hero-banner__image--mobile {
+      display: block;
+      object-position: center center;
+    }
+
+    #HeroBanner-{{ section.id }} .hero-banner__inner {
+      position: absolute;
+      inset: 0;
+      min-height: 720px;
+      height: 100%;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding-top: 50px;
+      padding-left: 22px;
+      padding-right: 22px;
+    }
+
+    #HeroBanner-{{ section.id }} .hero-banner__content {
+      max-width: 52%;
+    }
+
+    #HeroBanner-{{ section.id }} .hero-banner__heading {
+      font-size: clamp(36px, 10vw, 52px);
+      line-height: 0.98;
+    }
+
+    #HeroBanner-{{ section.id }} .hero-banner__subheading {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    #HeroBanner-{{ section.id }} .hero-banner__buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    #HeroBanner-{{ section.id }} .hero-banner__button {
+      width: auto;
+      min-width: 150px;
+    }
+
+    #HeroBanner-{{ section.id }} .hero-banner__scrim {
+      background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.12) 0%,
+        rgba(0, 0, 0, 0.03) 45%,
+        rgba(0, 0, 0, 0) 75%
+      );
+    }
+  }
 {%- endstyle -%}
 
-<div class="hero-banner color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding{% if section.settings.desktop_image != blank or section.settings.mobile_image != blank or section.settings.video != blank %} hero-banner--media{% endif %}">
+
+<div
+  id="HeroBanner-{{ section.id }}"
+  class="
+    hero-banner
+    color-{{ section.settings.color_scheme }}
+    gradient
+    section-{{ section.id }}-padding
+    {% if section.settings.desktop_image != blank
+      or section.settings.mobile_image != blank
+      or section.settings.video != blank
+    %}
+      hero-banner--media
+    {% endif %}
+  "
+>
+
+  {%- comment -%}
+    ==========================================
+    MEDIA
+    ==========================================
+  {%- endcomment -%}
+
   {%- if section.settings.video != blank -%}
+
+    <!-- Background Video -->
     <div class="hero-banner__media-wrap" aria-hidden="true">
+
       {{
         section.settings.video
-        | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, image_size: '1920x'
+        | video_tag:
+          autoplay: true,
+          loop: true,
+          muted: true,
+          controls: false,
+          playsinline: true,
+          preload: 'metadata',
+          image_size: '1920x'
       }}
+
       <div class="hero-banner__scrim"></div>
+
     </div>
-  {%- elsif section.settings.image != blank -%}
+
+
+  {%- elsif section.settings.desktop_image != blank or section.settings.mobile_image != blank -%}
+
+    <!-- Responsive Background Images -->
     <div class="hero-banner__media-wrap" aria-hidden="true">
-      {{
-        section.settings.image
-        | image_url: width: 2400
-        | image_tag:
-          loading: 'eager',
-          fetchpriority: 'high',
-          sizes: '100vw',
-          widths: '750, 1100, 1500, 1780, 2000, 2400',
-          class: 'hero-banner__image'
-      }}
+
+      {%- if section.settings.desktop_image != blank -%}
+
+        {{
+          section.settings.desktop_image
+          | image_url: width: 2400
+          | image_tag:
+            loading: 'eager',
+            fetchpriority: 'high',
+            widths: '1200,1600,1920,2200,2400',
+            sizes: '100vw',
+            class: 'hero-banner__image hero-banner__image--desktop'
+        }}
+
+      {%- endif -%}
+
+
+      {%- if section.settings.mobile_image != blank -%}
+
+        {{
+          section.settings.mobile_image
+          | image_url: width: 1200
+          | image_tag:
+            loading: 'eager',
+            fetchpriority: 'high',
+            widths: '600,750,900,1200',
+            sizes: '100vw',
+            class: 'hero-banner__image hero-banner__image--mobile'
+        }}
+
+      {%- elsif section.settings.desktop_image != blank -%}
+
+        <!-- Desktop fallback for mobile -->
+
+        {{
+          section.settings.desktop_image
+          | image_url: width: 1200
+          | image_tag:
+            loading: 'eager',
+            fetchpriority: 'high',
+            widths: '600,750,900,1200',
+            sizes: '100vw',
+            class: 'hero-banner__image hero-banner__image--mobile'
+        }}
+
+      {%- endif -%}
+
+
       <div class="hero-banner__scrim"></div>
+
     </div>
+
+
   {%- else -%}
+
+    <!-- Default decorative background -->
     <div class="hero-banner__rings" aria-hidden="true">
       <span class="hero-banner__ring hero-banner__ring--1"></span>
       <span class="hero-banner__ring hero-banner__ring--2"></span>
       <span class="hero-banner__ring hero-banner__ring--3"></span>
     </div>
+
   {%- endif -%}
 
+
+  {%- comment -%}
+    ==========================================
+    HERO CONTENT
+    ==========================================
+  {%- endcomment -%}
+
   <div class="hero-banner__inner page-width">
+
     <div class="hero-banner__content">
+
       {%- if section.settings.eyebrow != blank -%}
-        <p class="hero-banner__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+
+        <p class="hero-banner__eyebrow">
+          {{ section.settings.eyebrow | escape }}
+        </p>
+
       {%- endif -%}
+
+
       {%- if section.settings.heading != blank -%}
-        <h1 class="hero-banner__heading">{{ section.settings.heading }}</h1>
+
+        <h1 class="hero-banner__heading">
+          {{ section.settings.heading }}
+        </h1>
+
       {%- endif -%}
+
+
       {%- if section.settings.subheading != blank -%}
-        <p class="hero-banner__subheading">{{ section.settings.subheading }}</p>
+
+        <p class="hero-banner__subheading">
+          {{ section.settings.subheading }}
+        </p>
+
       {%- endif -%}
-      {%- if section.settings.button_label != blank or section.settings.button_label_2 != blank -%}
+
+
+      {%- if section.settings.button_label != blank
+        or section.settings.button_label_2 != blank
+      -%}
+
         <div class="hero-banner__buttons">
+
           {%- if section.settings.button_label != blank -%}
-            <a href="{{ section.settings.button_link | default: '#' }}" class="button hero-banner__button">
+
+            <a
+              href="{{ section.settings.button_link | default: '#' }}"
+              class="button hero-banner__button"
+            >
               {{- section.settings.button_label -}}
             </a>
+
           {%- endif -%}
+
+
           {%- if section.settings.button_label_2 != blank -%}
+
             <a
               href="{{ section.settings.button_link_2 | default: '#' }}"
               class="button button--secondary hero-banner__button"
             >
               {{- section.settings.button_label_2 -}}
             </a>
+
           {%- endif -%}
+
         </div>
+
       {%- endif -%}
+
     </div>
+
   </div>
+
 </div>
+
 
 {% schema %}
 {
   "name": "Hero banner",
   "class": "section",
+
   "settings": [
+
     {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-4"
     },
+
     {
-  "type": "image_picker",
-  "id": "desktop_image",
-  "label": "Desktop Hero Image",
-  "info": "Recommended: 1920 × 900 px"
-},
-{
-  "type": "image_picker",
-  "id": "mobile_image",
-  "label": "Mobile Hero Image",
-  "info": "Recommended: 900 × 1200 px"
-},
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop Hero Image",
+      "info": "Recommended: 1920 × 900 px"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Hero Image",
+      "info": "Recommended: 900 × 1200 px"
+    },
+
     {
       "type": "video",
       "id": "video",
       "label": "Background video (optional)",
-      "info": "Takes priority over the image when set. Muted, autoplay, loops."
+      "info": "Video takes priority over both desktop and mobile images."
     },
+
     {
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow text",
       "default": "Premium Fragrances"
     },
+
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
       "default": "More Than a Scent, It's a Statement."
     },
+
     {
       "type": "textarea",
       "id": "subheading",
       "label": "Subheading",
       "default": "Discover timeless fragrances crafted for those who leave a lasting impression."
     },
+
     {
       "type": "text",
       "id": "button_label",
       "label": "Button label",
       "default": "Shop Now"
     },
+
     {
       "type": "url",
       "id": "button_link",
       "label": "Button link"
     },
+
     {
       "type": "text",
       "id": "button_label_2",
       "label": "Secondary button label"
     },
+
     {
       "type": "url",
       "id": "button_link_2",
       "label": "Secondary button link"
     },
+
     {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
     },
+
     {
       "type": "range",
       "id": "padding_top",
@@ -159,6 +442,7 @@
       "label": "t:sections.all.padding.padding_top",
       "default": 0
     },
+
     {
       "type": "range",
       "id": "padding_bottom",
@@ -169,7 +453,9 @@
       "label": "t:sections.all.padding.padding_bottom",
       "default": 0
     }
+
   ],
+
   "presets": [
     {
       "name": "Hero banner"
