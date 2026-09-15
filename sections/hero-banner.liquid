@@ -371,164 +371,189 @@
 
   @media screen and (max-width: 749px) {
 
-    #HeroBanner-{{ section.id }} {
-      min-height: 0;
-
-      height: 760px;
-    }
-
-
-    /* Mobile media fills entire hero */
-
-    #HeroBanner-{{ section.id }} .hero-banner__media-wrap {
-      position: absolute;
-
-      inset: 0;
-
-      width: 100%;
-      height: 100%;
-    }
-
-
-    /* Hide desktop image */
-
-    #HeroBanner-{{ section.id }} .hero-banner__image--desktop {
-      display: none;
-    }
-
-
-    /* Show mobile image */
-
-    #HeroBanner-{{ section.id }} .hero-banner__image--mobile {
-      display: block;
-
-      object-position: center center;
-    }
-
-
-    /* Mobile content */
-
-    #HeroBanner-{{ section.id }} .hero-banner__inner {
-      position: absolute;
-
-      inset: 0;
-
-      min-height: 760px;
-
-      height: 100%;
-
-      display: flex;
-
-      align-items: flex-start;
-
-      justify-content: flex-start;
-
-      padding-top: 45px;
-      padding-left: 22px;
-      padding-right: 22px;
-    }
-
-
-    /* Keep content on clean left side */
-
-    #HeroBanner-{{ section.id }} .hero-banner__content {
-      width: 55%;
-
-      max-width: 340px;
-
-      padding: 0;
-
-      text-align: left;
-    }
-
-
-    /* Mobile eyebrow */
-
-    #HeroBanner-{{ section.id }} .hero-banner__eyebrow {
-      margin-bottom: 17px;
-
-      font-size: 9px;
-
-      line-height: 1.4;
-
-      letter-spacing: 0.18em;
-    }
-
-
-    /* Mobile heading */
-
-    #HeroBanner-{{ section.id }} .hero-banner__heading {
-      max-width: 100%;
-
-      font-size: clamp(38px, 10.5vw, 54px);
-
-      line-height: 0.97;
-
-      letter-spacing: -0.035em;
-
-      text-align: left;
-    }
-
-
-    /* Mobile description */
-
-    #HeroBanner-{{ section.id }} .hero-banner__subheading {
-      max-width: 290px;
-
-      margin-top: 19px;
-
-      font-size: 14px;
-
-      line-height: 1.55;
-
-      text-align: left;
-    }
-
-
-    /* Mobile buttons */
-
-    #HeroBanner-{{ section.id }} .hero-banner__buttons {
-      margin-top: 25px;
-
-      display: flex;
-
-      flex-direction: column;
-
-      align-items: flex-start;
-
-      gap: 9px;
-    }
-
-
-    #HeroBanner-{{ section.id }} .hero-banner__button {
-      width: auto;
-
-      min-width: 145px;
-
-      min-height: 49px;
-
-      padding-left: 20px;
-      padding-right: 20px;
-
-      font-size: 10px;
-
-      letter-spacing: 0.14em;
-    }
-
-
-    /* Mobile overlay */
-
-    #HeroBanner-{{ section.id }} .hero-banner__scrim {
-      background:
-        linear-gradient(
-          90deg,
-          rgba(0, 0, 0, 0.10) 0%,
-          rgba(0, 0, 0, 0.035) 42%,
-          rgba(0, 0, 0, 0) 72%
-        );
-    }
-
+  #HeroBanner-{{ section.id }} {
+    position: relative;
+    width: 100%;
+    height: 760px;
+    min-height: 760px;
+    overflow: hidden;
   }
+
+  /* Mobile image */
+  #HeroBanner-{{ section.id }} .hero-banner__media-wrap {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+  }
+
+  /* Hide desktop image */
+  #HeroBanner-{{ section.id }} .hero-banner__image--desktop {
+    display: none !important;
+  }
+
+  /* Show mobile image */
+  #HeroBanner-{{ section.id }} .hero-banner__image--mobile {
+    display: block !important;
+
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    /*
+      Keep the bottle toward the RIGHT.
+      This prevents the product from moving behind the text.
+    */
+    object-position: 100% center;
+  }
+
+  /* Very subtle overlay */
+  #HeroBanner-{{ section.id }} .hero-banner__scrim {
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+      90deg,
+      rgba(255,255,255,0.10) 0%,
+      rgba(255,255,255,0.03) 42%,
+      rgba(255,255,255,0) 72%
+    );
+
+    z-index: 2;
+  }
+
+  /* =====================================================
+     TEXT CONTAINER
+  ===================================================== */
+
+  #HeroBanner-{{ section.id }} .hero-banner__inner {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+    min-height: 760px;
+
+    display: block;
+
+    padding: 0 22px !important;
+
+    z-index: 5;
+  }
+
+  /* =====================================================
+     TEXT — LEFT SIDE
+  ===================================================== */
+
+  #HeroBanner-{{ section.id }} .hero-banner__content {
+    position: absolute;
+
+    top: 48px;
+    left: 22px;
+
+    width: 52%;
+    max-width: 205px;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    text-align: left !important;
+
+    z-index: 6;
+  }
+
+  /* Eyebrow */
+  #HeroBanner-{{ section.id }} .hero-banner__eyebrow {
+    margin: 0 0 18px;
+
+    font-size: 9px;
+
+    line-height: 1.4;
+
+    letter-spacing: 0.18em;
+
+    text-align: left !important;
+  }
+
+  /* Heading */
+  #HeroBanner-{{ section.id }} .hero-banner__heading {
+    margin: 0;
+
+    width: 100%;
+    max-width: 205px;
+
+    font-size: clamp(38px, 10.5vw, 52px);
+
+    line-height: 0.96;
+
+    letter-spacing: -0.035em;
+
+    text-align: left !important;
+  }
+
+  /* Description */
+  #HeroBanner-{{ section.id }} .hero-banner__subheading {
+    margin: 20px 0 0;
+
+    width: 100%;
+    max-width: 195px;
+
+    font-size: 13px;
+
+    line-height: 1.55;
+
+    text-align: left !important;
+  }
+
+  /* =====================================================
+     BUTTONS
+  ===================================================== */
+
+  #HeroBanner-{{ section.id }} .hero-banner__buttons {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    justify-content: flex-start;
+
+    gap: 9px;
+
+    margin-top: 24px;
+
+    width: auto;
+  }
+
+  #HeroBanner-{{ section.id }} .hero-banner__button {
+    display: inline-flex;
+
+    width: auto !important;
+    min-width: 145px;
+
+    min-height: 48px;
+
+    padding: 0 18px;
+
+    margin: 0;
+
+    font-size: 9px;
+
+    letter-spacing: 0.13em;
+
+    white-space: nowrap;
+
+    text-align: center;
+  }
+
+}
 
 {%- endstyle -%}
 
