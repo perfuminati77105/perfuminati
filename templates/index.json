@@ -26,6 +26,67 @@
         "padding_bottom": 24
       }
     },
+    "shop_by_family": {
+      "type": "collection-list",
+      "blocks": {
+        "floral": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "floral"
+          }
+        },
+        "woody": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "woody"
+          }
+        },
+        "fruity": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "fruity"
+          }
+        },
+        "citrus": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "citrus"
+          }
+        },
+        "aromatic-fresh": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "aromatic-fresh-fourgere"
+          }
+        },
+        "spicy": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "oriental-spicy"
+          }
+        }
+      },
+      "block_order": [
+        "floral",
+        "woody",
+        "fruity",
+        "citrus",
+        "aromatic-fresh",
+        "spicy"
+      ],
+      "settings": {
+        "title": "Shop by Fragrance Family",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 6,
+        "color_scheme": "scheme-2",
+        "show_view_all": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
     "shop_by_category": {
       "type": "collection-list",
       "blocks": {
@@ -43,6 +104,7 @@
         },
         "unisex": {
           "type": "featured_collection",
+          "disabled": true,
           "settings": {
             "collection": "unisex-1"
           }
@@ -179,7 +241,7 @@
         "buy_buttons"
       ],
       "settings": {
-        "product": "ambush",
+        "product": "blue-horizon",
         "color_scheme": "scheme-2",
         "secondary_background": false,
         "media_size": "large",
@@ -272,67 +334,6 @@
         "show_rating": false,
         "quick_add": "standard",
         "columns_mobile": "1",
-        "swipe_on_mobile": true,
-        "padding_top": 48,
-        "padding_bottom": 48
-      }
-    },
-    "shop_by_family": {
-      "type": "collection-list",
-      "blocks": {
-        "floral": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "floral"
-          }
-        },
-        "woody": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "woody"
-          }
-        },
-        "fruity": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "fruity"
-          }
-        },
-        "citrus": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "citrus"
-          }
-        },
-        "aromatic-fresh": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "aromatic-fresh-fourgere"
-          }
-        },
-        "spicy": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "oriental-spicy"
-          }
-        }
-      },
-      "block_order": [
-        "floral",
-        "woody",
-        "fruity",
-        "citrus",
-        "aromatic-fresh",
-        "spicy"
-      ],
-      "settings": {
-        "title": "Shop by Fragrance Family",
-        "heading_size": "h1",
-        "image_ratio": "square",
-        "columns_desktop": 6,
-        "color_scheme": "scheme-2",
-        "show_view_all": false,
-        "columns_mobile": "2",
         "swipe_on_mobile": true,
         "padding_top": 48,
         "padding_bottom": 48
@@ -663,13 +664,13 @@
   },
   "order": [
     "hero",
+    "shop_by_family",
     "shop_by_category",
     "featured_collection_banner",
     "fragrance_of_the_week",
     "trending_collection",
     "new_arrivals",
     "best_sellers",
-    "shop_by_family",
     "shop_by_collection",
     "find_your_scent",
     "trust_benefits",
