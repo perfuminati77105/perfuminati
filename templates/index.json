@@ -242,7 +242,7 @@
       ],
       "settings": {
         "product": "blue-horizon",
-        "color_scheme": "scheme-2",
+        "color_scheme": "scheme-1",
         "secondary_background": false,
         "media_size": "large",
         "constrain_to_viewport": true,

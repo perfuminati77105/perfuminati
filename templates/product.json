@@ -23,10 +23,6 @@
           "type": "title",
           "settings": {}
         },
-        "price": {
-          "type": "price",
-          "settings": {}
-        },
         "batch_code_help": {
           "type": "help_modal",
           "settings": {
@@ -46,6 +42,10 @@
           "type": "quantity_selector",
           "settings": {}
         },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
@@ -59,18 +59,22 @@
         },
         "fragrance_notes": {
           "type": "collapsible_tab",
+          "disabled": true,
           "settings": {
             "heading": "Fragrance Notes",
             "icon": "perfume",
-            "content": "<p>Top notes, heart notes, and base notes for this fragrance will appear here. Add this product's scent profile from the product description or a metafield.</p>"
+            "content": "<p>Top notes, heart notes, and base notes for this fragrance will appear here. Add this product's scent profile from the product description or a metafield.</p>",
+            "page": ""
           }
         },
         "ingredients": {
           "type": "collapsible_tab",
+          "disabled": true,
           "settings": {
             "heading": "Ingredients",
             "icon": "leaf",
-            "content": "<p>Full ingredient details are available on the product packaging. Add this product's ingredient list here or via a metafield.</p>"
+            "content": "<p>Full ingredient details are available on the product packaging. Add this product's ingredient list here or via a metafield.</p>",
+            "page": ""
           }
         },
         "how_to_use": {
@@ -78,7 +82,8 @@
           "settings": {
             "heading": "How to Use",
             "icon": "clipboard",
-            "content": "<p>Spray onto pulse points, such as the wrists and neck, for the best diffusion of the fragrance.</p>"
+            "content": "<p>Spray onto pulse points, such as the wrists and neck, for the best diffusion of the fragrance.</p>",
+            "page": ""
           }
         },
         "shipping": {
@@ -86,7 +91,8 @@
           "settings": {
             "heading": "Shipping & Delivery",
             "icon": "truck",
-            "content": "<p>Orders are carefully packaged and shipped within 1-2 business days. Delivery times vary by destination.</p>"
+            "content": "<p>Orders are carefully packaged and shipped within 1-2 business days. Delivery times vary by destination.</p>",
+            "page": ""
           }
         },
         "returns": {
@@ -94,7 +100,8 @@
           "settings": {
             "heading": "Returns & Exchanges",
             "icon": "return",
-            "content": "<p>Not the right scent? Unopened items can be returned within 30 days of delivery for a full refund.</p>"
+            "content": "<p>Not the right scent? Unopened items can be returned within 30 days of delivery for a full refund.</p>",
+            "page": ""
           }
         },
         "faq": {
@@ -102,7 +109,8 @@
           "settings": {
             "heading": "FAQ",
             "icon": "question_mark",
-            "content": "<p>Have a question about this fragrance? Visit our <a href=\"/pages/faq\">FAQ page</a> or contact us directly.</p>"
+            "content": "<p>Have a question about this fragrance? Visit our <a href=\"/pages/faq\">FAQ page</a> or contact us directly.</p>",
+            "page": ""
           }
         },
         "fragrance_guide_popup": {
@@ -149,6 +157,10 @@
     "disclosures": {
       "type": "disclosures",
       "settings": {
+        "heading": "Disclosures",
+        "heading_size": "h2",
+        "open_by_default": false,
+        "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 0
       }
